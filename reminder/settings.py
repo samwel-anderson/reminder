@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-ju^rsei$0+*pm30^)n#ir*9je^j#l3+b2ih#3vt9+bf4o)+u11
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'tbt',
+    'django.contrib.humanize',
+    'lodge_app',
 ]
 
 MIDDLEWARE = [
@@ -73,6 +74,21 @@ WSGI_APPLICATION = 'reminder.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
+
+# DATABASES = {
+#     'default': {
+#         'NAME': 'lodge_db',
+#         'ENGINE': 'django.db.backends.mysql',
+#         'USER': 'root',
+#         'HOST': '127.0.0.1',
+#         'PORT': '8889',
+#         'unix_socket': '/Applications/MAMP/tmp/mysql/mysql.sock',
+#         'PASSWORD': 'root',
+#         'OPTIONS': {
+#           'autocommit': True,
+#         },
+#     }
+# }
 
 DATABASES = {
     'default': {
@@ -114,6 +130,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = "/Users/administrator/Desktop/staticcontent"
 
 # Media files
 MEDIA_URL = "/media/"

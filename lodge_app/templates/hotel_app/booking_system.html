@@ -1,0 +1,1201 @@
+
+<!DOCTYPE html>
+<html lang="zxx">
+{% load static %}
+{% include 'hotel_app/html_utils/head.html' %}
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TFC5925"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div class="page_loader" style="background: url(static/assets/css/loader.gif) center no-repeat #fff;"></div>
+
+
+<!-- Option Panel -->
+{% include 'hotel_app/html_utils/room_details_option_panel.html' %}
+<!-- /Option Panel -->
+
+<!-- Top header start -->
+{% include 'hotel_app/html_utils/room_details_top_header.html' %}
+
+<!-- Top header end -->
+
+<!-- Main header start -->
+{% include 'hotel_app/html_utils/room_details_main_header.html' %}
+<!-- Main header end -->
+
+<!-- Sidenav start -->
+<nav id="sidebar" class="nav-sidebar sidebar-heading-section">
+    <!-- Close btn-->
+    <div id="dismiss">
+        <i class="fa fa-close"></i>
+    </div>
+    <div class="sidebar-inner">
+        <div class="sidebar-logo">
+            <img src="img/logos/logo.png" alt="sidebarlogo">
+        </div>
+        <div class="sidebar-navigation">
+            <h3 class="heading">Pages</h3>
+            <ul class="menu-list">
+                <li><a href="#" class="pt0">Index <em class="fa fa-chevron-down"></em></a>
+                    <ul>
+                        <li><a href="index.html">Index 1</a></li>
+                        <li><a href="index-2.html">Index 2</a></li>
+                        <li><a href="index-3.html">Index 3</a></li>
+                        <li><a href="index-4.html">Index 4</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="active">Rooms <em class="fa fa-chevron-down"></em></a>
+                    <ul>
+                        <li><a href="rooms-col-1.html">1 Column</a></li>
+                        <li><a href="rooms-col-2.html">2 Column</a></li>
+                        <li><a href="rooms-col-3.html">3 Column</a></li>
+                        <li><a href="rooms-details.html">Rooms Details</a></li>
+                        <li><a href="rooms-details-2.html">Rooms Details 2</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Pages <em class="fa fa-chevron-down"></em></a>
+                    <ul>
+                        <li>
+                            <a href="#">About Us<em class="fa fa-chevron-down"></em></a>
+                            <ul>
+                                <li><a href="about.html">About Us</a></li>
+                                <li><a href="about-2.html">About Us 2</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Gallery<em class="fa fa-chevron-down"></em></a>
+                            <ul>
+                                <li><a href="gallery-3column.html">Gallery 3 Column</a></li>
+                                <li><a href="gallery-4column.html">Gallery 4 Column</a></li>
+                                <li><a href="gallery-masonry.html">Gallery Masonry</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="booking-system.html">Booking System</a></li>
+                        <li>
+                            <a href="#">Staff <em class="fa fa-chevron-down"></em></a>
+                            <ul>
+                                <li><a href="staff.html">Staff</a></li>
+                                <li><a href="staff-2.html">Staff 2</a></li>
+                                <li><a href="staff-3.html">Staff 3</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Events <em class="fa fa-chevron-down"></em></a>
+                            <ul>
+                                <li><a href="events.html">Events</a></li>
+                                <li><a href="events-right-sidebar.html">Events Right Sidebar</a></li>
+                                <li><a href="events-details.html">Events Details</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="pricing-tables.html">Pricing Tables</a></li>
+                        <li><a href="typography.html">Typography</a></li>
+                        <li><a href="faq.html">Faq</a></li>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="signup.html">Signup</a></li>
+                        <li><a href="forgot-password.html">Forgot Password</a></li>
+                        <li><a href="404.html">404 Error</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Contact <em class="fa fa-chevron-down"></em></a>
+                    <ul>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="contact-2.html">Contact 2</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Blog <em class="fa fa-chevron-down"></em></a>
+                    <ul>
+                        <li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
+                        <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
+                        <li><a href="blog-full-width.html">Blog Fullwidth</a></li>
+                        <li><a href="blog-creative.html">Blog Creative</a></li>
+                        <li><a href="blog-details.html">Blog Detail</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="get-in-touch">
+            <h3 class="heading">Get in Touch</h3>
+            <div class="sidebar-contact-info">
+                <div class="icon">
+                    <i class="fa fa-phone"></i>
+                </div>
+                <div class="body-info">
+                    <a href="tel:0477-0477-8556-552">0477 8556 552</a>
+                </div>
+            </div>
+            <div class="sidebar-contact-info">
+                <div class="icon">
+                    <i class="fa fa-envelope"></i>
+                </div>
+                <div class="body-info">
+                    <a href="#">info@themevessel.com</a>
+                </div>
+            </div>
+            <div class="sidebar-contact-info mb-0">
+                <div class="icon">
+                    <i class="fa fa-fax"></i>
+                </div>
+                <div class="body-info">
+                    <a href="tel:0477-0477-8556-552">0266 8556 787</a>
+                </div>
+            </div>
+        </div>
+        <div class="get-social">
+            <h3 class="heading">Get Social</h3>
+            <a href="#" class="facebook-bg">
+                <i class="fa fa-facebook"></i>
+            </a>
+            <a href="#" class="twitter-bg">
+                <i class="fa fa-twitter"></i>
+            </a>
+            <a href="#" class="google-bg">
+                <i class="fa fa-google"></i>
+            </a>
+            <a href="#" class="linkedin-bg">
+                <i class="fa fa-linkedin"></i>
+            </a>
+        </div>
+    </div>
+</nav>
+<!-- Sidenav end -->
+
+<!-- Sidenav start -->
+<nav id="sidebar" class="nav-sidebar sidebar-heading-section">
+    <!-- Close btn-->
+    <div id="dismiss">
+        <i class="fa fa-close"></i>
+    </div>
+    <div class="sidebar-inner">
+        <div class="sidebar-logo">
+            <img src="img/logos/logo.png" alt="sidebarlogo">
+        </div>
+        <div class="sidebar-navigation">
+            <h3 class="heading">Pages</h3>
+            <ul class="menu-list">
+                <li><a href="#" class="pt0">Index <em class="fa fa-chevron-down"></em></a>
+                    <ul>
+                        <li><a href="index.html">Index 1</a></li>
+                        <li><a href="index-2.html">Index 2</a></li>
+                        <li><a href="index-3.html">Index 3</a></li>
+                        <li><a href="index-4.html">Index 4</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Rooms <em class="fa fa-chevron-down"></em></a>
+                    <ul>
+                        <li><a href="rooms-col-1.html">1 Column</a></li>
+                        <li><a href="rooms-col-2.html">2 Column</a></li>
+                        <li><a href="rooms-col-3.html">3 Column</a></li>
+                        <li><a href="rooms-details.html">Rooms Details</a></li>
+                        <li><a href="rooms-details-2.html">Rooms Details 2</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="active">Pages <em class="fa fa-chevron-down"></em></a>
+                    <ul>
+                        <li>
+                            <a href="#">About Us<em class="fa fa-chevron-down"></em></a>
+                            <ul>
+                                <li><a href="about.html">About Us</a></li>
+                                <li><a href="about-2.html">About Us 2</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Gallery<em class="fa fa-chevron-down"></em></a>
+                            <ul>
+                                <li><a href="gallery-3column.html">Gallery 3 Column</a></li>
+                                <li><a href="gallery-4column.html">Gallery 4 Column</a></li>
+                                <li><a href="gallery-masonry.html">Gallery Masonry</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="booking-system.html">Booking System</a></li>
+                        <li>
+                            <a href="#">Staff <em class="fa fa-chevron-down"></em></a>
+                            <ul>
+                                <li><a href="staff.html">Staff</a></li>
+                                <li><a href="staff-2.html">Staff 2</a></li>
+                                <li><a href="staff-3.html">Staff 3</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Events <em class="fa fa-chevron-down"></em></a>
+                            <ul>
+                                <li><a href="events.html">Events</a></li>
+                                <li><a href="events-right-sidebar.html">Events Right Sidebar</a></li>
+                                <li><a href="events-details.html">Events Details</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="pricing-tables.html">Pricing Tables</a></li>
+                        <li><a href="typography.html">Typography</a></li>
+                        <li><a href="faq.html">Faq</a></li>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="signup.html">Signup</a></li>
+                        <li><a href="forgot-password.html">Forgot Password</a></li>
+                        <li><a href="404.html">404 Error</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Contact <em class="fa fa-chevron-down"></em></a>
+                    <ul>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="contact-2.html">Contact 2</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Blog <em class="fa fa-chevron-down"></em></a>
+                    <ul>
+                        <li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
+                        <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
+                        <li><a href="blog-full-width.html">Blog Fullwidth</a></li>
+                        <li><a href="blog-creative.html">Blog Creative</a></li>
+                        <li><a href="blog-details.html">Blog Detail</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="get-in-touch">
+            <h3 class="heading">Get in Touch</h3>
+            <div class="sidebar-contact-info">
+                <div class="icon">
+                    <i class="fa fa-phone"></i>
+                </div>
+                <div class="body-info">
+                    <a href="tel:0477-0477-8556-552">0477 8556 552</a>
+                </div>
+            </div>
+            <div class="sidebar-contact-info">
+                <div class="icon">
+                    <i class="fa fa-envelope"></i>
+                </div>
+                <div class="body-info">
+                    <a href="#">info@themevessel.com</a>
+                </div>
+            </div>
+            <div class="sidebar-contact-info mb-0">
+                <div class="icon">
+                    <i class="fa fa-fax"></i>
+                </div>
+                <div class="body-info">
+                    <a href="tel:0477-0477-8556-552">0266 8556 787</a>
+                </div>
+            </div>
+        </div>
+        <div class="get-social">
+            <h3 class="heading">Get Social</h3>
+            <a href="#" class="facebook-bg">
+                <i class="fa fa-facebook"></i>
+            </a>
+            <a href="#" class="twitter-bg">
+                <i class="fa fa-twitter"></i>
+            </a>
+            <a href="#" class="google-bg">
+                <i class="fa fa-google"></i>
+            </a>
+            <a href="#" class="linkedin-bg">
+                <i class="fa fa-linkedin"></i>
+            </a>
+        </div>
+    </div>
+</nav>
+<!-- Sidenav end -->
+
+<!-- Sub banner start -->
+<div class="sub-banner">
+    <div class="container">
+        <div class="breadcrumb-area">
+            <h1>Booking System</h1>
+        </div>
+        <nav class="breadcrumbs">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{%url 'home'%}">Home</a></li>
+                <li class="breadcrumb-item active">Booking System</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<!-- Sub Banner end -->
+
+<!-- Booking flow start -->
+<div class="booking-flow content-area-6">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="stepwizard">
+                    <div class="stepwizard-row setup-panel">
+                        <div class="stepwizard-step col-xs-3">
+                            <a href="#step-1" class="btn btn-success btn-circle">
+                                <i class="fa fa-folder-o"></i>
+                            </a>
+                            <h3>Select Room</h3>
+                        </div>
+                        <div class="stepwizard-step col-xs-3">
+                            <a href="#step-2" class="btn btn-default btn-circle">
+                                <i class="fa fa-user"></i>
+                            </a>
+                            <h3>Personal Info</h3>
+                        </div>
+                        <div class="stepwizard-step col-xs-3">
+                            <a href="#step-3" class="btn btn-default btn-circle">
+                                <i class="fa fa-cc"></i>
+                            </a>
+                            <h3>Payment Info</h3>
+                        </div>
+                        <div class="stepwizard-step col-xs-3">
+                            <a href="#step-4" class="btn btn-default btn-circle">
+                                <i class="fa fa-check"></i>
+                            </a>
+                            <h3>Review</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <form  id ='form' method="POST">
+                    {%csrf_token%}
+                    <div class="panel panel-primary setup-content" id="step-1">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-12 col-sm-12">
+                                    <h3 class="booking-heading-2">Search Your Rooms</h3>
+                                    <div class="sidebar">
+                                        <!-- Search area box 3 start -->
+                                        <div class="search-area-box-3 sidebar-widget mb-30">
+                                            <div class="search-contents">
+                                                <div class="search-your-details">
+                                                    <div class="form-group clearfix">
+                                                        <input type="text" id="check_in" class="btn-default datepicker clearfix" placeholder="Check In">
+                                                    </div>
+                                                    <div class="form-group clearfix">
+                                                        <input type="text" id="check_out" class="btn-default datepicker clearfix" placeholder="Check Out">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <select class="selectpicker search-fields" id="changed_room" name="room">
+                                                            <option>Room</option>
+                                                            <option>Single Room</option>
+                                                            <option>Double Room</option>
+                                                            <option>Deluxe Room</option>
+                                                             <option>Luxury Room</option>
+                                                        </select>
+                                                    </div>
+                                                    
+                                                    <div class="form-group mb-0">
+                                                        <button class="btn-md btn-theme btn-4 btn-7 w-100">Search</button>
+                                                    </div>
+                                                    <div style="margin-top: 10px; display:none" id="sms" class="alert alert-success" role="alert">
+                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Search area box 3 end -->
+                                    </div>
+                                </div>
+                                <div class="col-lg-8 col-md-12 col-sm-12">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <h3 class="booking-heading-2">Available Rooms</h3>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div class="row">
+                                            {% for avail_room in available_rooms %}
+                                                <div class="hotel-box col-md-6">
+                                                <!-- Photo thumbnail -->
+                                                <div class="photo-thumbnail">
+                                                    <div class="photo">
+                                                        <img src="{{avail_room.image.url}}" alt="photo" class="img-fluid w-100">
+                                                        <a href="{% url 'room_details' avail_room.id %}">
+                                                            <span class="blog-one__plus"></span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="pr">
+                                                        <div class="rating">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                                                            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                            </svg>  
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                                                            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                            </svg>  
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                                                            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                            </svg>  
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                                                                <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                            </svg>  
+                                                                <i class="fa fa-star-half-full"></i>
+                                                        </div>
+                                                        ${{avail_room.name}}/Night
+                                                    </div>
+                                                </div>
+                                                <!-- Detail -->
+                                                <div class="detail clearfix">
+                                                    <h3>
+                                                        <a href="rooms-details.html">{{avail_room.name}}</a>
+                                                    </h3>
+                                                    <p class="location">
+                                                        <a href="{% url 'room_details' avail_room.id %}">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                                                            <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+                                                            <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                                            </svg>{{avail_room.location}},
+                                                        </a>
+                                                    </p>
+                                                    <div class="fecilities">
+                                                        <ul>
+                                                            {%for  amenity  in  avail_room.amenities %}
+                                                                <li>
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-building" viewBox="0 0 16 16">
+                                                                    <path fill-rule="evenodd" d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"/>
+                                                                    <path d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z"/>
+                                                                    </svg> {{amenity}}
+                                                                </li>
+                                                            {%endfor%}
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            {%endfor%}
+                                                
+                                            </div>
+                                           
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <button id="nextBtn" class="btn-md btn-theme btn-4 btn-7 nextBtn pull-right" type="button">Save and continue</button>
+                        </div>
+                    </div>
+                    <div class="panel panel-primary setup-content" id="step-2">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-8 col-md-12 col-sm-12">
+                                    <h3 class="booking-heading-2 black-color">Personal Info</h3>
+                                    <div class="contact-form">
+                                        {% if request.user.is_authenticated %}
+                                        <div class="sidebar-widget">
+                                            <div class="row">
+                                                
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="form-group firstname">
+                                                        <label for="inputfirstname" class="form-label">First Name</label>
+                                                        <input type="text" name="first-name" class="form-control" value="{{ request.user.profile.first_name }}" id="inputfirstname" placeholder="First Name">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="form-group lastname">
+                                                        <label for="inputlastname" class="form-label">Last Name</label>
+                                                        <input type="text" name="last-name" class="form-control" value="{{ request.user.profile.last_name }}" id="inputlastname" placeholder="Last Name">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="form-group address-line-1">
+                                                        <label for="inputaddress-line1" class="form-label">Address Line 1</label>
+                                                        <input type="text" name="address-line1" class="form-control" id="inputaddress-line1" placeholder="Address Line 1">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="form-group address-line-2">
+                                                        <label for="inputaddress-line2" class="form-label">Address Line 2</label>
+                                                        <input type="text" name="address-line2" class="form-control" id="inputaddress-line2" placeholder="Address Line 2">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="form-group address-line-2">
+                                                        <label for="inputcity" class="form-label">City</label>
+                                                        <input type="text" name="city" class="form-control" id="inputcity" placeholder="City">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="form-group address-line-2">
+                                                        <label for="inputcode" class="form-label">Zip/Post Code</label>
+                                                        <input type="text" name="code" value="{{ request.user.profile.zip_or_post_code }}" class="form-control" id="inputcode" placeholder="Zip">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="form-group address-line-2">
+                                                        <label for="inputstate" class="form-label">State/Region</label>
+                                                        <input type="text" name="state" class="form-control" id="inputstate" placeholder="State">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="form-group country">
+                                                        <label>Country</label>
+                                                        <select class="selectpicker country search-fields"  value="{{ request.user.profile.country }}" name="Country">
+                                                            <option>county</option>
+                                                            <option>United Kingdom</option>
+                                                            <option>Canada</option>
+                                                            <option>Australia</option>
+                                                            <option>France</option>
+                                                            <option>Spain</option>
+                                                            <option>Brazil</option>
+                                                            <option>Bhutan</option>
+                                                            <option>Bangladesh</option>
+                                                            <option>India</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="sidebar-widget sw-2">
+                                            <h3 class="booking-heading-2">Account Info</h3>
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="form-group phone-number">
+                                                        <label for="inputphonenumber" class="form-label">Phone Number</label>
+                                                        <input type="text" name="name" class="form-control" id="inputphonenumber" placeholder="Phone Number">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="form-group email">
+                                                        <label for="inputemailaddress" class="form-label">Email Address</label>
+                                                        <input type="email" name="email" class="form-control" id="inputemailaddress" placeholder="Email Address">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="form-group password">
+                                                        <label for="inputpassword" class="form-label">Password</label>
+                                                        <input type="password" name="password" class="form-control" id="inputpassword" placeholder="Password">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="form-group re-password">
+                                                        <label for="inputre-password" class="form-label">Re-Password</label>
+                                                        <input type="password" name="password" class="form-control" id="inputre-password" placeholder="Re-Password">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="checkbox mb-30 clearfix">
+                                                        <div class="ez-checkbox pull-left">
+                                                            <label>
+                                                                <input type="checkbox" class="ez-hide">
+                                                                By Sign up you are agree with our <a href="#">terms and condition</a>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                         {% else %}<a href="#">Login</a>{% endif %}
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-12 col-sm-12">
+                                    <h3 class="booking-heading-2">Booking Details</h3>
+                                    <div id="booked-room-info"" class="booling-details-box">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <button id="save-personal-info-btn-1" class="btn-md btn-theme btn-4 btn-7 nextBtn pull-left" type="button">Save and continue</button>
+                        </div>
+                    </div>
+                    <div class="panel panel-primary setup-content" id="step-3">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-8 col-md-12 col-xs-12">
+                                    <h3 class="booking-heading-2 black-color">Billing Address for {{ request.user.username }}</h3>
+                                    <div class="contact-form">
+                                        {% if request.user.is_authenticated %}
+                                        <div class="sidebar-widget">
+                                            <div class="row">
+                                               
+                                               
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="form-group firstname">
+                                                        <label for="inputfirstname2" class="form-label">First Name</label>
+                                                        <input type="text" name="first-name" class="form-control" id="inputfirstname2" value="{{ request.user.username }}" placeholder="First Name">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="form-group lastname">
+                                                        <label for="inputlastname2" class="form-label">Last Name</label>
+                                                        <input type="text" name="last-name" class="form-control" id="inputlastname2" placeholder="Last Name">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="form-group address-line-1">
+                                                        <label for="inputaddress-line3" class="form-label">Address Line 1</label>
+                                                        <input type="text" name="address-line1" class="form-control" id="inputaddress-line3" placeholder="Address Line 1">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="form-group address-line-2">
+                                                        <label for="inputaddress-line4" class="form-label">Address Line 2</label>
+                                                        <input type="text" name="address-line2" class="form-control" id="inputaddress-line4" placeholder="Address Line 2">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="form-group address-line-2">
+                                                        <label for="inputcity2" class="form-label">City</label>
+                                                        <input type="text" name="city" class="form-control" id="inputcity2" placeholder="City">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="form-group address-line-2">
+                                                        <label for="inputcode2" class="form-label">Zip/Post Code</label>
+                                                        <input type="text" name="code" class="form-control" id="inputcode2" placeholder="Zip">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="form-group address-line-2">
+                                                        <label for="inputstate2" class="form-label">State/Region</label>
+                                                        <input type="text" name="state" class="form-control" id="inputstate2" placeholder="State">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="form-group country">
+                                                        <label>Country</label>
+                                                        <select class="selectpicker country search-fields" name="Country">
+                                                            <option>county</option>
+                                                            <option>United Kingdom</option>
+                                                            <option>Canada</option>
+                                                            <option>Australia</option>
+                                                            <option>France</option>
+                                                            <option>Spain</option>
+                                                            <option>Brazil</option>
+                                                            <option>Bhutan</option>
+                                                            <option>Bangladesh</option>
+                                                            <option>India</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="sidebar-widget sw-2">
+                                            <h3 class="booking-heading-2">Card Info</h3>
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="form-group card-number">
+                                                        <label for="inputcardnumber" class="form-label">Card Number</label>
+                                                        <input type="text" name="card-number" class="form-control" id="inputcardnumber" placeholder="Card Number">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="form-group CVV">
+                                                        <label for="inputlastCVV" class="form-label">CVV</label>
+                                                        <input type="text" name="last-name" class="form-control" id="inputlastCVV" placeholder="CVV">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="form-group Country">
+                                                        <label>Expire</label>
+                                                        <select class="selectpicker country search-fields" name="Country">
+                                                            <option>Month</option>
+                                                            <option>1</option>
+                                                            <option>2</option>
+                                                            <option>3</option>
+                                                            <option>4</option>
+                                                            <option>5</option>
+                                                            <option>6</option>
+                                                            <option>7</option>
+                                                            <option>8</option>
+                                                            <option>9</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="form-group Country">
+                                                        <label>Year</label>
+                                                        <select class="selectpicker country search-fields" name="Country">
+                                                            <option>2021</option>
+                                                            <option>2016</option>
+                                                            <option>2015</option>
+                                                            <option>2014</option>
+                                                            <option>2013</option>
+                                                            <option>2012</option>
+                                                            <option>2011</option>
+                                                            <option>2010</option>
+                                                            <option>2009</option>
+                                                            <option>2008</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                         {% else %}<a href="#">Login</a>{% endif %}
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-12 col-xs-12">
+                                    <h3 class="booking-heading-2">Booking Details</h3>
+                                    <div id="booked-room-infor-2" class="booling-details-box">
+                                        <div id="carouselExampleIndicators2" class="carousel slide" data-bs-ride="carousel">
+                                            <div class="carousel-indicators">
+                                                <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                                <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                                <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                            </div>
+                                            <div class="carousel-inner">
+                                                <div class="carousel-item active">
+                                                    <img src="img/room/img-2.jpg" class="d-block w-100" alt="photo">
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <img src="img/room/img-5.jpg" class="d-block w-100" alt="photo">
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <img src="img/room/img-1.jpg" class="d-block w-100" alt="photo">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            <h4><a href="#">Double Room</a></h4>
+                                            <ul>
+                                                <li>
+                                                    <span>Check In:</span> october 28, 2021
+                                                </li>
+                                                <li>
+                                                    <span>Check Out:</span> october 29, 2021
+                                                </li>
+                                               
+                                            </ul>
+                                            <div class="your-address">
+                                                <strong>Your Address:</strong>
+                                                <address>
+                                                    <strong>John maikel</strong>
+                                                    <br><br>
+                                                    Level 13, 2 Elizabeth St, Melbourne
+                                                    Victoria 3000
+                                                </address>
+                                            </div>
+                                            <div class="price">
+                                                Total:$317.99
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button id="save-personal-info-btn-2" class="btn-md btn-theme btn-4 btn-7 nextBtn pull-left" type="button">Save and continue</button>
+                        </div>
+                    </div>
+                    <div  class="panel panel-primary setup-content" id="step-4">
+                       
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Booking flow end -->
+
+<!-- Footer start -->
+<footer class="main-footer clearfix">
+    <div class="container">
+        <!-- Footer info-->
+        <div class="footer-info">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="footer-item">
+                        <div class="main-title-2">
+                            <h1>Contact Us</h1>
+                        </div>
+                        <ul class="personal-info">
+                            <li>
+                                <i class="fa fa-map-marker"></i>
+                                Address: 44 New Design Street,
+                            </li>
+                            <li>
+                                <i class="fa fa-envelope"></i>
+                                Email:<a href="mailto:sales@hotelempire.com">info@themevessel.com</a>
+                            </li>
+                            <li>
+                                <i class="fa fa-phone"></i>
+                                Phone: <a href="tel:+55-417-634-7071">+0477 85X6 552</a>
+                            </li>
+                            <li>
+                                <i class="fa fa-fax"></i>
+                                Fax: +0477 85X6 552
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                    <div class="footer-item">
+                        <div class="main-title-2">
+                            <h1>Booking</h1>
+                        </div>
+                        <ul class="links">
+                            <li>
+                                <a href="rooms-col-3.html">Rooms & Suites</a>
+                            </li>
+                            <li>
+                                <a href="rooms-details.html">Restaurant</a>
+                            </li>
+                            <li>
+                                <a href="rooms-col-2.html">Hotel</a>
+                            </li>
+                            <li>
+                                <a href="#">Our Facilties</a>
+                            </li>
+                            <li>
+                                <a href="rooms-col-3.html">Rooms</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                    <div class="footer-item">
+                        <div class="main-title-2">
+                            <h1>About</h1>
+                        </div>
+                        <ul class="links">
+                            <li>
+                                <a href="about.html">About Us</a>
+                            </li>
+                            <li>
+                                <a href="blog-right-sidebar.html">Blog & Events</a>
+                            </li>
+                            <li>
+                                <a href="booking-system.html">Booking</a>
+                            </li>
+                            <li>
+                                <a href="gallery-3column.html">Gallery</a>
+                            </li>
+                            <li>
+                                <a href="contact.html">Contact Us</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="footer-item newsletter">
+                        <div class="main-title-2">
+                            <h1>Newsletter</h1>
+                        </div>
+                        <div class="newsletter-inner">
+                            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                            <form class="form-inline" action="#" method="GET">
+                                <input type="text" class="form-control" id="inlineFormInputName4" placeholder="Your Email">
+                                <button type="submit" class="btn btn-small"><i class="fa fa-paper-plane"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copy-right">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <p> &copy;  2021 <a href="http://themevessel.com/" target="_blank">Theme Vessel</a>. All Rights Reserved.</p>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="clearfix"></div>
+                    <ul class="social-list">
+                        <li><a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#" class="rss-bg"><i class="fa fa-rss"></i></a></li>
+                        <li><a href="#" class="google-bg"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#" class="linkedin-bg"><i class="fa fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer end -->
+
+
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script  src="js/ie10-viewport-bug-workaround.js"></script>
+
+<script src="{% static 'assets/js/jquery.min.js'%}"></script>
+<script src="{% static 'assets/js/bootstrap.bundle.min.js'%}"></script>
+<script  src="{% static 'assets/js/bootstrap-submenu.js'%}"></script>
+<script  src="{% static 'assets/js/jquery.mb.YTPlayer.js'%}"></script>
+<script  src="{% static 'assets/js/wow.min.js'%}"></script>
+<script  src="{% static 'assets/js/bootstrap-select.min.js'%}"></script>
+<script  src="{% static 'assets/js/jquery.easing.1.3.js'%}"></script>
+<script  src="{% static 'assets/js/jquery.scrollUp.js'%}"></script>
+<script  src="{% static 'assets/js/jquery.mCustomScrollbar.concat.min.js'%}"></script>
+<script  src="{% static 'assets/js/jquery.filterizr.js'%}"></script>
+<script src="{% static 'assets/js/bootstrap-datepicker.min.js'%}"></script>
+<script  src="{% static 'assets/js/slick.min.js'%}"></script>
+<script  src="{% static 'assets/js/sidebar.js'%}"></script>
+<script  src="{% static 'assets/js/app.js'%}"></script>
+<script  src="{% static 'assets/js/dropzone.js'%}"></script>
+<script  src="{% static 'assets/js/jquery.magnific-popup.min.js'%}"></script>
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script  src="{% static 'assets/js/ie10-viewport-bug-workaround.js'%}"></script>
+<!-- Custom javascript -->
+
+</body>
+<script>
+    function dateFormat(inputDate, format) {
+    //parse the input date
+    const date = new Date(inputDate);
+
+    //extract the parts of the date
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();    
+
+    //replace the month
+    format = format.replace("MM", month.toString().padStart(2,"0"));        
+
+    //replace the year
+    if (format.indexOf("yyyy") > -1) {
+        format = format.replace("yyyy", year.toString());
+    } else if (format.indexOf("yy") > -1) {
+        format = format.replace("yy", year.toString().substr(2,2));
+    }
+
+    //replace the day
+    format = format.replace("dd", day.toString().padStart(2,"0"));
+
+    return format;
+}
+
+function renderFinalbookingStep(roomInfor, infoContainer){
+    infoContainer.innerHTML =''
+    const imageList =  JSON.parse(roomInfor.room_image_list)
+    console.log(imageList)
+    const html= ` <div class="panel-body">
+                            <h3 class="booking-heading-2">Booking Details</h3>
+                            <div class="row g-0 booling-details-box booling-details-box-2 mb-30">
+                                <div class="col-xl-7 col-lg-7 col-md-12">
+                                    <div id="carouselExampleCaptions2" class="carousel slide" data-bs-ride="carousel">
+                                        <div class="carousel-indicators">
+                                            <button type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                            <button type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                            <button type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                        </div>
+                                        <div id="image-container" class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <img src="/static/assets/img/img-1.jpg" alt="photo" class="d-block w-100">
+                                                <div class="carousel-caption"></div>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="/static/assets/img/img-2.jpg" alt="photo" class="d-block w-100">
+                                                <div class="carousel-caption"></div>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="/static/assets/img/img-3(1).jpg" alt="photo" class="d-block w-100">
+                                                <div class="carousel-caption"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-5 col-lg-5 col-md-12">
+                                    <div class="info">
+                                        <h4>Your Payment ID: #30211229</h4>
+                                        <ul>
+                                              <li>
+                                                    <span id = "booked_room_check_in">Check In:</span> ${roomInfor.check_in}
+                                                </li>
+                                                <li>
+                                                    <span id = "booked_room_out">Check Out:</span> ${roomInfor.check_out}
+                                                </li>
+                                              
+                                        </ul>
+                                        <div class="your-address">
+                                            <strong>Your Address:</strong>
+                                            <address>
+                                                <strong>John maikel</strong>
+                                                <br>
+                                                Level 13, 2 Elizabeth St, Melbourne
+                                                Victoria 3000
+                                            </address>
+                                        </div>
+                                        <div class="price">
+                                            Total:$317.99
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="info-2">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat. In fermentum facilisis massa, a consequat purus viverra a. Aliquam pellentesque nibh et nibh feugiat gravida. Maecenas ultricies, diam vitae semper placerat, velit risus accumsan nisl, eget tempor lacus est vel</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat. In fermentum facilisis massa, a consequat purus viverra a. Aliquam pellentesque nibh et nibh feugiat gravida. Maecenas ultricies, diam vitae semper placerat, velit risus accumsan nisl</p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat. In fermentum facilisis massa, a consequat purus viverra a.
+                                    <p class="mb-30">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat. In fermentum facilisis massa, a consequat purus viverra a. Aliquam pellentesque nibh et nibh feugiat gravida. Maecenas ultricies, diam vitae semper placerat, velit risus accumsan nisl, eget tempor lacus est vel Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat. In fermentum facilisis massa, a consequat purus viverra a. Aliquam pellentesque nibh et nibh feugiat gravida. Maecenas ultricies, diam vitae semper placerat, velit risus accumsan nisl Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat. In fermentum facilisis massa, a consequat purus viverra a.</p>
+                                </div>
+                            </div>
+                            <div class="confirm-row">
+                                <div class="confirm-col">
+                                    <button onclick="comfirmBooking(event)"  id="confirm-btn" value="${roomInfor.room}" room="${roomInfor.room}" class="btn-md btn-theme btn-4 btn-7 nextBtn pull-right" type="button">confirm booking</button>
+                                    <button onclick="concelBooking(event)" id="concel-btn"value="${roomInfor.room}" room="${roomInfor.room}" class="btn-md btn-theme btn-4 btn-7 nextBtn pull-right" type="button">concel booking</button>
+                                </div>
+                            </div>
+                           <div id='danger-sms' >
+                            </div>
+                        </div>
+                    </div>`
+      return  infoContainer.innerHTML = html
+}
+
+function renderRoomInfor (roomInfor, inforContainer){
+
+    inforContainer.innerHTML =''
+            const html = `
+            
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div  class="carousel-inner">
+                 <div class="carousel-item active">
+                <img src="${roomInfor.room_image}" class="d-block w-100" alt="photo">
+                </div>
+                <div class="carousel-item">
+                    <img src="img/room/img-5.jpg" class="d-block w-100" alt="photo">
+                </div>
+                <div class="carousel-item">
+                    <img src="img/room/img-1.jpg" class="d-block w-100" alt="photo">
+                </div>
+            </div>
+        </div>
+        <div class="info">
+            <h4><a  id = "booked_room_name" href="#">${roomInfor.changed_room_type}</a></h4>
+            <ul>
+                <li>
+                    <span id = "booked_room_check_in">Check In:</span> ${roomInfor.check_in}
+                </li>
+                <li>
+                    <span id = "booked_room_out">Check Out:</span> ${roomInfor.check_out}
+                </li>
+                
+            </ul>
+            <div class="price">
+                Total:$${roomInfor.price}
+            </div>
+        </div>`           
+        
+   inforContainer.innerHTML = html
+ }
+
+
+
+$('#form').on('submit', function(e){
+        
+  e.preventDefault();
+  const form_data = {
+            action:"search_room_and_save",
+            booked_room: '{{room_details.id}}',
+            check_in : dateFormat( $('#check_in').val(), 'yyyy-MM-dd'),
+            check_out : dateFormat( $('#check_out').val(), 'yyyy-MM-dd'),
+            change_room : $('#changed_room').val(),
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+            dataType: "json",
+        }
+       
+    
+    $.ajax({
+        type : "POST", 
+        url: $(e).data("url"),
+        data: form_data,
+        success: function(data){
+            let sms = document.getElementById('sms')
+            sms.innerText = ` ${data.msg}`
+            sms.style.display = 'block'
+           
+
+            // render booking info
+            localStorage.setItem('booked_room',  JSON.stringify(data.room_booked))
+            let inforContainer =  document.getElementById('booked-room-info')
+             booked_room = localStorage.getItem('booked_room')
+            renderRoomInfor (data.room_booked, inforContainer)
+           
+        },
+        failure: function() {
+            
+        }
+    });
+ });    
+
+
+ document.getElementById('nextBtn').addEventListener('click', (event)=>{
+    booked_room = localStorage.getItem('booked_room')
+    let inforContainer =  document.getElementById('booked-room-info')
+    renderRoomInfor(JSON.parse(booked_room), inforContainer)
+ })
+
+
+ document.getElementById('save-personal-info-btn-1').addEventListener('click', (event)=>{
+     //console.log("clicked")
+    booked_room = localStorage.getItem('booked_room')
+    let inforContainer =  document.getElementById('booked-room-infor-2')
+    renderRoomInfor(JSON.parse(booked_room), inforContainer)
+ })
+
+
+ document.getElementById('save-personal-info-btn-2').addEventListener('click', (event)=>{
+     console.log("clicked")
+    booked_room = localStorage.getItem('booked_room')
+    let inforContainer =  document.getElementById('step-4')
+    renderFinalbookingStep(JSON.parse(booked_room), inforContainer)
+ })
+
+function comfirmBooking(event){
+    origin_room = event.target.getAttribute('room');
+    console.log( event.target.value,   origin_room)
+   // Getter
+
+    $.ajax({
+        type : "POST", 
+        url: '/manageBookingstatus',
+        data: {
+            action:"comfirm_booking",
+            room: event.target.value,
+            origin_room:  origin_room,
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+            dataType: "json",
+        },
+        success: function(data){
+           let sms = document.getElementById('danger-sms')
+            sms.innerHTML = `<div class="alert alert-success d-flex align-items-center" role="alert">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                        </svg>
+                        <div>
+                            ${data.msg}
+
+                        </div>
+                        </div>`
+            sms.style.display = 'block'
+        },
+        failure: function() {
+        }
+    });
+  
+}
+
+function concelBooking(event){
+    origin_room = event.target.getAttribute('room');
+    console.log( event.target.value,   origin_room)
+    $.ajax({
+        type : "POST", 
+        url: '/manageBookingstatus',
+        data: {
+            action:"concel_booking",
+            changed_room: event.target.value,
+            origin_room: origin_room,
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+            dataType: "json",
+        },
+        success: function(data){
+            console.log(data)
+            let sms = document.getElementById('danger-sms')
+            sms.innerHTML = `<div class="alert alert-danger d-flex align-items-center" role="alert">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
+                            <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                            </svg>
+                               ${data.msg}
+                            </div>`
+            sms.style.display = 'block'
+            
+        },
+        failure: function() {
+        }
+    });
+}
+ 
+ 
+
+
+
+
+</script>
+</html>
+

@@ -1,0 +1,18 @@
+.confirm-row {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.confirm-row .confirm-col{
+    display: flex;
+
+} 
+
+.confirm-row .confirm-col button {
+    margin-right: 12px;
+
+}  
+
+.divider {
+    width: 30px;
+}

@@ -14,12 +14,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
+from ninja import NinjaAPI
 #from tbt.admin import blog_site
+
+from lodge_app_apis import api as api_routes
+
+api = NinjaAPI(title="Lodge Api's", docs_url="/docs")
+api.add_router("",api_routes.api)
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("", include("lodge_app.urls")),
+    path("api/",api.urls)
     #path('hoteladmin/', blog_site.urls),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
