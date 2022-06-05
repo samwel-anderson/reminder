@@ -12,21 +12,72 @@
 
 <!-- Option Panel -->
 <div class="option-panel option-panel-collased">
-    <h2>Change Color</h2>
-    <div class="color-plate sandybrown-plate" data-color="sandybrown"></div>
-    <div class="color-plate blue-light-2-plate" data-color="blue-light-2"></div>
-    <div class="color-plate yellow-plate" data-color="yellow"></div>
-    <div class="color-plate red-plate" data-color="red"></div>
-    <div class="color-plate green-light-plate" data-color="green-light"></div>
-    <div class="color-plate purple-plate" data-color="purple"></div>
-    <div class="color-plate blue-plate" data-color="blue"></div>
-    <div class="color-plate peru-plate" data-color="peru"></div>
-    <div class="color-plate green-plate" data-color="green"></div>
-    <div class="color-plate blue-light-plate" data-color="blue-light"></div>
-    <div class="color-plate green-light-2-plate" data-color="green-light-2"></div>
-    <div class="color-plate royalblue-plate" data-color="royalblue"></div>
-    <div class="setting-button">
-        <i class="fa fa-gear"></i>
+    <div id="sms"></div>
+    <h2 style="color:green;">Your Reserved Rooms</h2>
+    <table class="table">
+        <thead>
+            <tr>
+             <th scope="col">Image</th>
+            <th scope="col">Reservation code</th>
+            <th scope="col">Name</th>
+            <th scope="col">Comfirmed</th>
+            <th scope="col">action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for room in my_booked_rooms %}
+            <tr>
+                <th scope="row"><img width="50" height="50" src="{{room.room.thumbnail.url}}" alt=""> </th>
+                <td>{{room.reservation_code}}</td>
+                <td>{{room.room.name}}</td>
+                <td>{%if room.comfirmed%}
+                    <div id="comfirm">
+                        <svg style="color:green" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                        </svg>
+                    </div>
+                   
+                      {%else%}
+
+                      <div id="cancel">
+                             <svg style="color:red" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                            </svg>
+                      </div>
+                   
+                {%endif%}
+                </td>
+              
+                <td>
+                    {%if  room.comfirmed%}
+                    <button onclick="concelBooking(event)" value="{{room.room.name}}" room="{{room.room.name}}" type="button" class="btn btn-outline-danger">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"></path>
+                        </svg>
+                   Cancel
+              </button>
+                       
+                    {%else%}
+                       <button onclick="comfirmBooking(event) "value="{{room.room.name}}" room="{{room.room.name}}"  type="button" class="btn btn-outline-success">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                     <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                    </svg>
+                Comfirm
+              </button>
+                    {%endif%}
+                </td>
+            </tr>
+            {%empty%}
+            No Booked room yet
+            {%endfor%}
+            
+        </tbody>
+    </table>
+    
+    <div style="background-color: green;" class="setting-button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+        </svg>
     </div>
 </div>
 <!-- /Option Panel -->
@@ -183,12 +234,12 @@
                         <div class="row bti-section">
                             <div class="col-lg-7 col-md-12 align-self-center">
                                 <div class="banner-test-info wow fadeInLeft delay-04s">
-                                    <h2>Welcome To Hotel Alpha</h2>
+                                    <h2>Welcome To our lodge</h2>
                                     <p>Lorem ipsum dolor sit amet, conconsectetuer adipiscing elit Lorem ipsum dolor sit amet, conconsectetuer</p>
                                     <a class="btn-lg btn-4 btn-6" href="#">Get Started Now</a>
                                 </div>
                             </div>
-                            <div class="col-lg-5 col-md-12 wow fadeInRight delay-04s">
+                            <!-- <div class="col-lg-5 col-md-12 wow fadeInRight delay-04s">
                                 <div class="search-area-box-2">
                                     <div class="search-contents">
                                         <form method="GET">
@@ -233,7 +284,7 @@
                                         </form>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -377,7 +428,7 @@
                         <div class="photo-thumbnail">
                             <div class="photo">
                                 <img src="{{room.thumbnail.url}}" alt="photo" class="img-fluid w-100">
-                                <a href="{% url 'booking_system' room.id %}">
+                                <a href="{% url 'room_details' room.id %}">
                                     <span class="blog-one__plus"></span>
                                 </a>
                             </div>
@@ -416,7 +467,7 @@
                                   <span>$ {{room.price}}<span/>   
                             </p> 
                             <div  class="fecilities w-100">
-                                <a class="btn-lg btn-5" href="{% url 'booking_system' room.id %}"><span>Book Now</span></a>
+                                <a class="btn-lg btn-5" href="{% url 'room_details' room.id %}"><span>Book Now</span></a>
 
                                 <ul>
                                     <li>
@@ -1133,7 +1184,78 @@
 
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script  src="{% static 'assets/js/ie10-viewport-bug-workaround.js'%}"></script>
+
+
+
 <!-- Custom javascript -->
+
+<script>
+
+    function comfirmBooking(event){
+    origin_room = event.target.getAttribute('room');
+    console.log( event.target.value,   origin_room)
+   // Getter
+
+    $.ajax({
+        type : "POST", 
+        url: '/manageBookingstatus',
+        data: {
+            action:"comfirm_booking",
+            room: event.target.value,
+            origin_room:  origin_room,
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+            dataType: "json",
+        },
+        success: function(data){
+           let sms = document.getElementById('sms')
+            sms.innerHTML = `<div class="alert alert-success d-flex align-items-center" role="alert">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                        </svg>
+                        <div>
+                            ${data.msg}, the status will change in few minus
+
+                        </div>
+                        </div>`
+            sms.style.display = 'block'
+        },
+        failure: function() {
+        }
+    });
+  
+}
+
+function concelBooking(event){
+    origin_room = event.target.getAttribute('room');
+    console.log( event.target.value,   origin_room)
+    $.ajax({
+        type : "POST", 
+        url: '/manageBookingstatus',
+        data: {
+            action:"concel_booking",
+            changed_room: event.target.value,
+            origin_room: origin_room,
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+            dataType: "json",
+        },
+        success: function(data){
+            console.log(data)
+            let sms = document.getElementById('sms')
+            sms.innerHTML = `<div class="alert alert-danger d-flex align-items-center" role="alert">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
+                            <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                            </svg>
+                               ${data.msg}  the status will change in few minus
+                            </div>`
+                           
+            sms.style.display = 'block'
+            
+        },
+        failure: function() {
+        }
+    });
+}
+</script>
 
 </body>
 </html>

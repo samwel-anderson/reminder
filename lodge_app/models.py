@@ -126,7 +126,7 @@ class Reservation(models.Model):
     comfirmed = models.BooleanField(default=False)
     canceled = models.BooleanField(default=False)
     guest = models.ForeignKey(User, on_delete=models.CASCADE, related_name="guest")
-    rerservation_code = models.CharField(null=True, max_length= 40)
+    reservation_code = models.CharField(null=True, max_length= 40)
     staff_activated = models.ForeignKey(User, on_delete=models.CASCADE, related_name="staff", null=True)
 
     def save(self, *args, **kwargs):

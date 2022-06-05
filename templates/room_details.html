@@ -12,7 +12,70 @@
    
 
 <!-- Option Panel -->
-{% include 'html_utils/room_details_option_panel.html' %}
+<div class="option-panel option-panel-collased">
+    <div id="sms"></div>
+    <h2 style="color:green;">Your Reserved Rooms</h2>
+    <table class="table">
+        <thead>
+            <tr>
+             <th scope="col">Image</th>
+            <th scope="col">Reservation code</th>
+            <th scope="col">Name</th>
+            <th scope="col">Comfirmed</th>
+            <th scope="col">action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for room in my_booked_rooms %}
+            <tr>
+                <th scope="row"><img width="50" height="50" src="{{room.room.thumbnail.url}}" alt=""> </th>
+                <td>{{room.reservation_code}}</td>
+                <td>{{room.room.name}}</td>
+                <td>{%if room.comfirmed%}
+                    <div id="comfirm">
+                        <svg style="color:green" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                        </svg>
+                    </div>
+                      {%else%}
+                      <div id="cancel">
+                             <svg style="color:red" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                            </svg>
+                      </div>
+                {%endif%}
+                </td>
+                <td>
+                    {%if  room.comfirmed%}
+                    <button onclick="concelBooking(event)" value="{{room.room.name}}" room="{{room.room.name}}" type="button" class="btn btn-outline-danger">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"></path>
+                        </svg>
+                   Cancel
+              </button>
+                    {%else%}
+                       <button onclick="comfirmBooking(event) "value="{{room.room.name}}" room="{{room.room.name}}"  type="button" class="btn btn-outline-success">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                     <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                    </svg>
+                Comfirm
+              </button>
+                    {%endif%}
+                </td>
+            </tr>
+            {%empty%}
+            No Booked room yet
+            {%endfor%}
+            
+        </tbody>
+    </table>
+    
+    <div style="background-color: green;" class="setting-button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+        </svg>
+    </div>
+</div>
 <!-- /Option Panel -->
 
 <!-- Top header start -->
@@ -35,83 +98,11 @@
             <img src="img/logos/logo.png" alt="sidebarlogo">
         </div>
         <div class="sidebar-navigation">
-            <h3 class="heading">Pages</h3>
+            <h3 class="heading">pages</h3>
             <ul class="menu-list">
-                <li><a href="#" class="pt0">Index <em class="fa fa-chevron-down"></em></a>
-                    <ul>
-                        <li><a href="index.html">Index 1</a></li>
-                        <li><a href="index-2.html">Index 2</a></li>
-                        <li><a href="index-3.html">Index 3</a></li>
-                        <li><a href="index-4.html">Index 4</a></li>
-                    </ul>
+                <li><a href="#" class="pt0">Home<em class="fa fa-chevron-down"></em></a>
                 </li>
-                <li><a href="#" class="active">Rooms <em class="fa fa-chevron-down"></em></a>
-                    <ul>
-                        <li><a href="rooms-col-1.html">1 Column</a></li>
-                        <li><a href="rooms-col-2.html">2 Column</a></li>
-                        <li><a href="rooms-col-3.html">3 Column</a></li>
-                        <li><a href="rooms-details.html">Rooms Details</a></li>
-                        <li><a href="rooms-details-2.html">Rooms Details 2</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">Pages <em class="fa fa-chevron-down"></em></a>
-                    <ul>
-                        <li>
-                            <a href="#">About Us<em class="fa fa-chevron-down"></em></a>
-                            <ul>
-                                <li><a href="about.html">About Us</a></li>
-                                <li><a href="about-2.html">About Us 2</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">Gallery<em class="fa fa-chevron-down"></em></a>
-                            <ul>
-                                <li><a href="gallery-3column.html">Gallery 3 Column</a></li>
-                                <li><a href="gallery-4column.html">Gallery 4 Column</a></li>
-                                <li><a href="gallery-masonry.html">Gallery Masonry</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="booking-system.html">Booking System</a></li>
-                        <li>
-                            <a href="#">Staff <em class="fa fa-chevron-down"></em></a>
-                            <ul>
-                                <li><a href="staff.html">Staff</a></li>
-                                <li><a href="staff-2.html">Staff 2</a></li>
-                                <li><a href="staff-3.html">Staff 3</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">Events <em class="fa fa-chevron-down"></em></a>
-                            <ul>
-                                <li><a href="events.html">Events</a></li>
-                                <li><a href="events-right-sidebar.html">Events Right Sidebar</a></li>
-                                <li><a href="events-details.html">Events Details</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="pricing-tables.html">Pricing Tables</a></li>
-                        <li><a href="typography.html">Typography</a></li>
-                        <li><a href="faq.html">Faq</a></li>
-                        <li><a href="login.html">Login</a></li>
-                        <li><a href="signup.html">Signup</a></li>
-                        <li><a href="forgot-password.html">Forgot Password</a></li>
-                        <li><a href="404.html">404 Error</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Contact <em class="fa fa-chevron-down"></em></a>
-                    <ul>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="contact-2.html">Contact 2</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Blog <em class="fa fa-chevron-down"></em></a>
-                    <ul>
-                        <li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
-                        <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
-                        <li><a href="blog-full-width.html">Blog Fullwidth</a></li>
-                        <li><a href="blog-creative.html">Blog Creative</a></li>
-                        <li><a href="blog-details.html">Blog Detail</a></li>
-                    </ul>
+                <li><a href="#" class="active">About<em class="fa fa-chevron-down"></em></a>
                 </li>
             </ul>
         </div>
@@ -211,21 +202,18 @@
                         <div class="for-sale">For Sale</div>
                         <h2><a href="#">{{room_details.name}}</a> <span class="pull-right">{% if room_details.price%}$ {{room_details.price}} {%else%} Price will show up soon {%endif%}<small>/mo</small></span></h2>
                         <ul class="facilities-list clearfix">
-                           
                             <li>
-                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-building" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"/>
-                                        <path d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z"/>
-                                        </svg>{{amemity}}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-building" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"/>
+                                <path d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z"/>
+                                </svg>{{amemity}}
                             </li>
-                           
-                      
                         </ul>
 
                         <p> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
-                                    <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
-                                    <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                                    </svg></i> {{room_details.location}}</p>
+                            <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+                            <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                            </svg></i> {{room_details.location}}</p>
                     </div>
                 </div>
             </div>
@@ -317,29 +305,7 @@
                     <!-- Amenities end -->
 
                     <!-- Extra service start  -->
-                    <div class="extra-service mb-50">
-                        <h3>Extra Service</h3>
-                        <div class="extra-service-item">
-                            <p class="tag-item-name">Air Conditioner </p>
-                            <div class="border-centar"></div>
-                            <div class="label-items-value"><span class="price">+24$</span>to price per person </div>
-                        </div>
-                        <div class="extra-service-item">
-                            <p class="tag-item-name">Free Internet </p>
-                            <div class="border-centar"></div>
-                            <div class="label-items-value"><span class="price">+14$</span>to price per person </div>
-                        </div>
-                        <div class="extra-service-item">
-                            <p class="tag-item-name">LCD Television </p>
-                            <div class="border-centar"></div>
-                            <div class="label-items-value"><span class="price">+15$</span>to price per person </div>
-                        </div>
-                        <div class="extra-service-item">
-                            <p class="tag-item-name">Microwave </p>
-                            <div class="border-centar"></div>
-                            <div class="label-items-value"><span class="price">+30$</span>to price per person </div>
-                        </div>
-                    </div>
+                  
                     <!-- Extra service end -->
 
                     <!-- House reles start -->
@@ -357,307 +323,10 @@
                     <!-- House reles end -->
 
                     <!-- Pricing plans start -->
-                    <div class="pricing-table mb-50">
-                        <h3>Pricing Plans</h3>
-                        <table class="table-responsive pricing-wrap">
-                            <thead>
-                            <tr>
-                                <th>Mon</th>
-                                <th>Tue</th>
-                                <th>Wed</th>
-                                <th>Thu</th>
-                                <th>Fri</th>
-                                <th>Sat</th>
-                                <th>Sun</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>$250</td>
-                                <td>$250</td>
-                                <td>$250</td>
-                                <td>$250</td>
-                                <td>$250</td>
-                                <td>$250</td>
-                                <td>$250</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                
                     <!-- Pricing plans end -->
 
-                    <!-- Cancellation start  -->
-                    <div class="cancellation mb-50">
-                        <h3>Cancellation</h3>
-                        <p>Phasellus volutpat neque a tellus venenatis, a euismod augue facilisis. Fusce ut metus mattis, consequat metus nec, luctus lectus. Pellentesque orci quis hendrerit sed eu dolor.
-                            Cancel up to 10 days to get a full refund.</p>
-                    </div>
-                    <!-- Cancellation end -->
-
-                    <!-- Comments section start -->
-                    <div class="comments-section">
-                        <!-- Main Title 2 -->
-                        <div class="main-title-2">
-                            <h1>Room Reviews</h1>
-                        </div>
-
-                        <ul class="comments mb-50">
-                            <li>
-                                <div class="comment">
-                                    <div class="comment-author">
-                                        <a href="#">
-                                            <img src="{% static 'assets/img//avatar-1.jpg'%}" alt="avatar">
-                                        </a>
-                                    </div>
-                                    <div class="comment-content">
-                                        <div class="comment-meta">
-                                            <div class="comment-meta-author">
-                                                Karen Paran
-                                            </div>
-                                            <div class="comment-meta-reply">
-                                                <a href="#">Reply</a>
-                                            </div>
-                                            <div class="comment-meta-date">
-                                                <span>8:42 PM 3/3/2020</span>
-                                            </div>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                        <div class="comment-body">
-                                            <div class="comment-rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <span>(Reting)</span>
-                                            </div>
-                                            <p>Lorem ipsum dolor sit amet, conser adipiscing elit. Donec luctus tincidunt aliquam. Aliquam gravida massa at sem vulputate interdum et vel eros. Maecenas eros enim, tincidunt vel turpis vel, dapibus tempus nulla. Donec vel nulla dui.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <ul>
-                                    <li>
-                                        <div class="comment">
-                                            <div class="comment-author">
-                                                <a href="#">
-                                                    <img src="img/avatar/avatar-2.jpg" alt="avatar">
-                                                </a>
-                                            </div>
-                                            <div class="comment-content">
-                                                <div class="comment-meta">
-                                                    <div class="comment-meta-author">
-                                                        Paran Karen
-                                                    </div>
-
-                                                    <div class="comment-meta-reply">
-                                                        <a href="#">Reply</a>
-                                                    </div>
-
-                                                    <div class="comment-meta-date">
-                                                        <span>8:42 PM 3/3/2020</span>
-                                                    </div>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                                <div class="comment-body">
-                                                    <div class="comment-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-half-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <span>(Reting)</span>
-                                                    </div>
-                                                    <p>Lorem ipsum dolor sit amet, conser adipiscing elit. Donec luctus tincidunt aliquam. Aliquam gravida massa at sem.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- Comments section end -->
-
-                    <!-- Contact 2 start -->
-                    <div class="contact-2 c-mb mb-50">
-                        <div class="main-title-2">
-                            <h1>Leave a Comment</h1>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <!-- Contact form start -->
-                                <div class="contact-form">
-                                    <form action="#" method="GET" enctype="multipart/form-data">
-                                        <div class="row">
-                                            <div class="col-lg-6 col-md-6">
-                                                <div class="form-group name">
-                                                    <input type="text" name="name" class="form-control" placeholder="Name" aria-label="Full Name">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6">
-                                                <div class="form-group email">
-                                                    <input type="email" name="email" class="form-control" placeholder="Email Address" aria-label="Email Address">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6">
-                                                <div class="form-group subject">
-                                                    <input type="text" name="subject" class="form-control" placeholder="Subject" aria-label="Subject">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6">
-                                                <div class="form-group number">
-                                                    <input type="text" name="phone" class="form-control" placeholder="Phone" aria-label="Phone Number">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12 col-md-12">
-                                                <div class="form-group message">
-                                                    <textarea  class="form-control" name="message" placeholder="Write message" aria-label="Write message"></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12 col-md-12">
-                                                <div class="send-btn">
-                                                    <button type="submit" class="btn-md btn-theme btn-4 btn-7">Submit Now</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                <!-- Contact form end -->
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Contact-2 end -->
-
-                    <!-- Similar room start -->
-                    <div class="similar-rooms">
-                        <div class="main-title-2">
-                            <h1>Similar Rooms</h1>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-12">
-                                <div class="hotel-box">
-                                    <!-- Photo thumbnail -->
-                                    <div class="photo-thumbnail">
-                                        <div class="photo">
-                                            <img src="i{% static 'assets/img/img-1.jpg'%}" alt="photo" class="img-fluid w-100">
-                                            <a href="rooms-details.html">
-                                                <span class="blog-one__plus"></span>
-                                            </a>
-                                        </div>
-                                        <div class="pr">
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-full"></i>
-                                            </div>
-                                            $567.99/Night
-                                        </div>
-                                    </div>
-                                    <!-- Detail -->
-                                    <div class="detail clearfix">
-                                        <h3>
-                                            <a href="rooms-details.html">Luxury Room</a>
-                                        </h3>
-                                        <p class="location">
-                                            <a href="rooms-details.html">
-                                                <i class="fa fa-map-marker"></i>123 Kathal St. Tampa City,
-                                            </a>
-                                        </p>
-                                        <div class="fecilities">
-                                            <ul>
-                                                <li>
-                                                    <i class="flaticon-bed"></i> Beds
-                                                </li>
-                                                <li>
-                                                    <i class="flaticon-air-conditioning"></i>
-                                                    AC
-                                                </li>
-                                                <li>
-                                                    <i class="flaticon-graph-line-screen"></i>
-                                                    TV
-                                                </li>
-                                                <li>
-                                                    <i class="flaticon-weightlifting"></i>
-                                                    GYM
-                                                </li>
-                                                <li>
-                                                    <i class="flaticon-wifi-connection-signal-symbol"></i>
-                                                    Wi-fi
-                                                </li>
-                                                <li>
-                                                    <i class="flaticon-parking"></i>
-                                                    Parking
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12">
-                                <div class="hotel-box">
-                                    <!-- Photo thumbnail -->
-                                    <div class="photo-thumbnail">
-                                        <div class="photo">
-                                            <img src="{% static 'assets/img/img-2.jpg'%}" alt="phot" class="img-fluid w-100">
-                                            <a href="rooms-details.html">
-                                                <span class="blog-one__plus"></span>
-                                            </a>
-                                        </div>
-                                        <div class="pr">
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-full"></i>
-                                            </div>
-                                            $567.99/Night
-                                        </div>
-                                    </div>
-                                    <!-- Detail -->
-                                    <div class="detail clearfix">
-                                        <h3>
-                                            <a href="rooms-details.html">Double Room</a>
-                                        </h3>
-                                        <p class="location">
-                                            <a href="rooms-details.html">
-                                                <i class="fa fa-map-marker"></i>123 Kathal St. Tampa City,
-                                            </a>
-                                        </p>
-                                        <div class="fecilities">
-                                            <ul>
-                                                <li>
-                                                    <i class="flaticon-bed"></i> Beds
-                                                </li>
-                                                <li>
-                                                    <i class="flaticon-air-conditioning"></i>
-                                                    AC
-                                                </li>
-                                                <li>
-                                                    <i class="flaticon-graph-line-screen"></i>
-                                                    TV
-                                                </li>
-                                                <li>
-                                                    <i class="flaticon-weightlifting"></i>
-                                                    GYM
-                                                </li>
-                                                <li>
-                                                    <i class="flaticon-wifi-connection-signal-symbol"></i>
-                                                    Wi-fi
-                                                </li>
-                                                <li>
-                                                    <i class="flaticon-parking"></i>
-                                                    Parking
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
                     <!-- Similar room end -->
                 </div>
                 <!-- Course details section end -->
@@ -684,13 +353,11 @@
                                                 <input type="text" id="check_out" name="check_out" class="btn-default datepicker" placeholder="Check Out">
                                             </div>
                                         </div>
-                                        <div class="col-md-12 col-sm-6">
+                                        <div hidden class="col-md-12 col-sm-6">
                                             <div class="form-group">
-                                                <select class="selectpicker search-fields" id="change_room" name="change_room">
-                                                    <option>Change your room choice</option>
-                                                    <option>Single Room</option>
-                                                    <option>Double Room</option>
-                                                    <option>Deluxe Room</option>
+                                                <select class="selectpicker search-fields" id="changed_room"  name="changed_room">
+                                                    <option selected >{{room_details.name}}</option>
+                                                    
                                                 </select>
                                             </div>
                                         </div>
@@ -715,159 +382,14 @@
                             </form>
                         </div>
                     </div>
-                    <!-- Recent News start -->
-                    <div class="sidebar-widget recent-news">
-                        <div class="main-title-2">
-                            <h1>Recent Posts</h1>
-                        </div>
-                        <div class="recent-news-item mb-3">
-                            <div class="thumb">
-                                <a href="#">
-                                    <img src="{% static 'assets/img/img-1.jpg'%}" alt="small-img">
-                                </a>
-                            </div>
-                            <div class="content">
-                                <h3 class="media-heading">
-                                    <a href="rooms-details.html">Host a Family Party</a>
-                                </h3>
-                                <div class="listing-post-meta">
-                                    $599,00 | <a href="#"><i class="fa fa-calendar"></i> Jan 12, 2021</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="recent-news-item mb-3">
-                            <div class="thumb">
-                                <a href="#">
-                                    <img src="img/small/img-2.jpg" alt="small-img">
-                                </a>
-                            </div>
-                            <div class="content">
-                                <h3 class="media-heading">
-                                    <a href="rooms-details.html">Room with View</a>
-                                </h3>
-                                <div class="listing-post-meta">
-                                    $599,00 | <a href="#"><i class="fa fa-calendar"></i> Aug 12, 2021</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="recent-news-item">
-                            <div class="thumb">
-                                <a href="#">
-                                    <img src="img/small/img-3.jpg" alt="small-img">
-                                </a>
-                            </div>
-                            <div class="content">
-                                <h3 class="media-heading">
-                                    <a href="rooms-details.html">Double Room</a>
-                                </h3>
-                                <div class="listing-post-meta">
-                                    $599,00 | <a href="#"><i class="fa fa-calendar"></i> Feb 12, 2021</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Location start  -->
-                    <div class="location sidebar-widget">
-                        <div class="map">
-                            <!-- Main Title 2 -->
-                            <div class="main-title-2">
-                                <h1>Location</h1>
-                            </div>
-                            <div id="map" class="contact-map" style="height: 662px;"></div>
-                        </div>
-                    </div>
-                    <!-- Social media start -->
-                    <div class="social-media sidebar-widget clearfix">
-                        <!-- Main Title 2 -->
-                        <div class="main-title-2">
-                            <h1>Social Media</h1>
-                        </div>
-                        <!-- Social list -->
-                        <ul class="social-list">
-                            <li><a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#" class="linkedin-bg"><i class="fa fa-linkedin"></i></a></li>
-                            <li><a href="#" class="google-bg"><i class="fa fa-google-plus"></i></a></li>
-                            <li><a href="#" class="rss-bg"><i class="fa fa-rss"></i></a></li>
-                        </ul>
-                    </div>
-                    <!-- Inside video start  -->
-                    <div class="inside-video sidebar-widget">
-                        <div class="main-title-2">
-                            <h1>Video</h1>
-                        </div>
-                        <iframe src="https://www.youtube.com/embed/5e0LxrLSzok" allowfullscreen=""></iframe>
-                    </div>
-                    <!-- Latest tweet start-->
-                    <div class="sidebar-widget latest-tweet">
-                        <div class="main-title-2">
-                            <h1>Latest Tweet</h1>
-                        </div>
-                        <p><a href="#">@Lorem ipsum dolor</a> sit amet, conser adipiscing elit. Aenean id dignissim justo. Maecenas urna lacus, bibendum </p>
-                        <p>@Lorem ipsum dolor<a href="#">sit amet, conser</a> adipiscing elit. Aenean id dignissim justo. Maecenas urna lacus, bibendum quis orci </p>
-                    </div>
+                  
                 </div>
                 <!-- Sidebar end -->
             </div>
         </div>
     </div>
 </div>
-<!-- Rooms details page end -->
 
-<!-- Partners 2 start -->
-<div class="partners-2 comon-slick">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-5 col-md-12">
-                <div class="left-info">
-                    <h2>Our Partners</h2>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                </div>
-            </div>
-            <div class="col-lg-7 col-md-12">
-                <div class="partners-inner">
-                    <div class="slick row comon-slick-inner" data-slick='{"slidesToShow": 3, "responsive":[{"breakpoint": 1024,"settings":{"slidesToShow": 2}}, {"breakpoint": 768,"settings":{"slidesToShow": 2}}]}'>
-                        <div class="item slide-box">
-                            <div class="partners-box">
-                                <img src="img/brand/brand-1.png" alt="brand" class="img-fluid">
-                            </div>
-                        </div>
-                        <div class="item slide-box">
-                            <div class="partners-box">
-                                <img src="img/brand/brand-2.png" alt="brand" class="img-fluid">
-                            </div>
-                        </div>
-                        <div class="item slide-box">
-                            <div class="partners-box">
-                                <img src="img/brand/brand-3.png" alt="brand" class="img-fluid">
-                            </div>
-                        </div>
-                        <div class="item slide-box">
-                            <div class="partners-box">
-                                <img src="img/brand/brand-4.png" alt="brand" class="img-fluid">
-                            </div>
-                        </div>
-                        <div class="item slide-box">
-                            <div class="partners-box">
-                                <img src="img/brand/brand-5.png" alt="brand" class="img-fluid">
-                            </div>
-                        </div>
-                        <div class="item slide-box">
-                            <div class="partners-box">
-                                <img src="img/brand/brand-6.png" alt="brand" class="img-fluid">
-                            </div>
-                        </div>
-                        <div class="item slide-box">
-                            <div class="partners-box">
-                                <img src="img/brand/brand-4.png" alt="brand" class="img-fluid">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <!-- Partners 2 end -->
 
 <!-- Footer start -->
@@ -1116,38 +638,124 @@
 }
 
 
-    $('#form').on('submit', function(e){
+   $('#form').on('submit', function(e){
         
-    e.preventDefault();
-  const form_data = {
-            booked_room: '{{room_details.id}}',
-            check_in : dateFormat( $('#check_in').val(), 'yyyy-MM-dd'),
-            check_out : dateFormat( $('#check_out').val(), 'yyyy-MM-dd'),
-            change_room : $('#change_room').val(),
-            csrfmiddlewaretoken: '{{ csrf_token }}',
-            dataType: "json",
-        }
-        console.log(form_data)
-    
+  e.preventDefault();
+  if($('#check_in').val() !== "" && $('#check_out').val()!== ""){
+      console.log($('#check_in').val())
+      console.log($('#check_out').val())
+      console.log($('#changed_room').val())
+    const form_data = {
+                action:"search_room_and_save",
+                booked_room: '{{room_details.id}}',
+                check_in : dateFormat( $('#check_in').val(), 'yyyy-MM-dd'),
+                check_out : dateFormat( $('#check_out').val(), 'yyyy-MM-dd'),
+                change_room : $('#changed_room').val(),
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                dataType: "json",
+            }
+        
+        
+        $.ajax({
+            type : "POST", 
+            url: $(e).data("url"),
+            data: form_data,
+            success: function(data){
+                let sms = document.getElementById('sms')
+                sms.innerText = ` ${data.msg}`
+                sms.style.display = 'block'
+            
+
+                // render booking info
+                localStorage.setItem('booked_room',  JSON.stringify(data.room_booked))
+                let inforContainer =  document.getElementById('booked-room-info')
+                booked_room = localStorage.getItem('booked_room')
+                renderRoomInfor (data.room_booked, inforContainer)
+            
+            },
+            failure: function() {
+                
+            }
+        });
+        
+
+      }
+      else  {
+           console.log($('#check_in').val())
+            console.log($('#check_out').val())
+            let sms = document.getElementById('sms')
+            sms.innerText = `Fill in all fields`
+            sms.style.display = 'block' 
+            console.log($('#changed_room').val())
+      }
+ });    
+
+
+
+  function comfirmBooking(event){
+    origin_room = event.target.getAttribute('room');
+    console.log( event.target.value,   origin_room)
+   // Getter
+
     $.ajax({
         type : "POST", 
-        url: $(e).data("url"),
-        data: form_data,
+        url: '/manageBookingstatus',
+        data: {
+            action:"comfirm_booking",
+            room: event.target.value,
+            origin_room:  origin_room,
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+            dataType: "json",
+        },
         success: function(data){
-            //$('#sms').html(data.msg) /* response message */
-            let sms = document.getElementById('sms')
-            let bookingBtn = document.getElementById('booking-btn')
-            sms.innerText = `${data.msg}`
+           let sms = document.getElementById('sms')
+            sms.innerHTML = `<div class="alert alert-success d-flex align-items-center" role="alert">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                        </svg>
+                        <div>
+                            ${data.msg}, the status will change in few minus
+
+                        </div>
+                        </div>`
             sms.style.display = 'block'
-            bookingBtn.style.display='block'
         },
         failure: function() {
-            
         }
     });
-    
-    
-            });    
+  
+}
+
+function concelBooking(event){
+    origin_room = event.target.getAttribute('room');
+    console.log( event.target.value,   origin_room)
+    $.ajax({
+        type : "POST", 
+        url: '/manageBookingstatus',
+        data: {
+            action:"concel_booking",
+            changed_room: event.target.value,
+            origin_room: origin_room,
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+            dataType: "json",
+        },
+        success: function(data){
+            console.log(data)
+            let sms = document.getElementById('sms')
+            sms.innerHTML = `<div class="alert alert-danger d-flex align-items-center" role="alert">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
+                            <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                            </svg>
+                               ${data.msg}  the status will change in few minus
+                            </div>`
+                           
+            sms.style.display = 'block'
+            
+        },
+        failure: function() {
+        }
+    });
+}
 
 </script>
 
