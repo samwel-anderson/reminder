@@ -364,10 +364,10 @@
                                        
                                         <div class="col-md-12 col-sm-12">
                                             <div class="form-group mb-0">
-                                                <button type="submit" class="btn-md btn-theme btn-4 btn-7 w-100">Check Now</button>
+                                                <button type="submit" class="btn-md btn-theme btn-4 btn-7 w-100">Book Now</button>
                                             </div>
                                         </div>
-                                        <div style="margin-top: 10px; display:none" id="sms" class="alert alert-success" role="alert">
+                                        <div style="margin-top: 10px; display:none" id="sms-1" class="alert alert-success" role="alert">
                                          
                                         </div>
                                         <ul class="py-3">
@@ -661,7 +661,7 @@
             url: $(e).data("url"),
             data: form_data,
             success: function(data){
-                let sms = document.getElementById('sms')
+                let sms = document.getElementById('sms-1')
                 sms.innerText = ` ${data.msg}`
                 sms.style.display = 'block'
             
@@ -683,7 +683,7 @@
       else  {
            console.log($('#check_in').val())
             console.log($('#check_out').val())
-            let sms = document.getElementById('sms')
+            let sms = document.getElementById('sms-1')
             sms.innerText = `Fill in all fields`
             sms.style.display = 'block' 
             console.log($('#changed_room').val())
