@@ -6,7 +6,7 @@ import random
 
 class Amenity(models.Model):
     name = models.CharField(max_length=50, null=False, blank=False)
-    faIcon = models.CharField(max_length=50, null=False, blank=False)
+    faIcon = models.CharField(max_length=50, null=True, blank=True)
     lodge = models.ForeignKey("Lodge", on_delete=models.CASCADE)
 
     class Meta:
@@ -120,13 +120,14 @@ class Policy(models.Model):
 
 
 class Reservation(models.Model):
-    date_in = models.DateTimeField(auto_now_add=False, blank=False)
-    date_out = models.DateTimeField(blank=False, null=False)
-    active = models.BooleanField(default=False)
-    rejected = models.BooleanField(default=False)
-    guest = models.ForeignKey("Guest", on_delete=models.CASCADE)
-    rerservation_code = models.IntegerField(null=True)
-    staff_activated = models.ForeignKey(User, on_delete=models.CASCADE)
+    date_in = models.DateField(null=True)
+    date_out = models.DateField(null=True)
+    room = models.ForeignKey("Room", on_delete=models.CASCADE, null=True)
+    comfirmed = models.BooleanField(default=False)
+    canceled = models.BooleanField(default=False)
+    guest = models.ForeignKey(User, on_delete=models.CASCADE, related_name="guest")
+    rerservation_code = models.CharField(null=True, max_length= 40)
+    staff_activated = models.ForeignKey(User, on_delete=models.CASCADE, related_name="staff", null=True)
 
     def save(self, *args, **kwargs):
         self.reservation_code = random.randint(8000, 9999)
@@ -136,7 +137,7 @@ class Reservation(models.Model):
         db_table = "Lodge_reservation"
 
     def __str__(self):
-        return "Reservation was done at: " + str(self.date_in) + str(self.date_out) + " " + str(self.active)
+        return "Reservation was done at: " + str(self.date_in) + str(self.date_out) + " " + str(self.comfirmed)
 
 
 class ReservedRoom(models.Model):
@@ -146,7 +147,7 @@ class ReservedRoom(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.room.name + str(" is reserved ") + str(self.reservation.active)
+        return self.room.name + str(" is reserved ") + str(self.reservation.comfirmed)
 
     class Meta:
         verbose_name = "Rerseved Room"
@@ -176,7 +177,11 @@ class Room(models.Model):
     lodge = models.ForeignKey("Lodge", on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     price = models.DecimalField(max_digits=12, decimal_places=2)
+    published = models.BooleanField(default=True, null=True)
+    booked = models.BooleanField(default=False, null=True)
+    thumbnail= models.ImageField(upload_to='rooms_images/%Y/%m/%d/', null=True)
     updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
 
     class Meta:
         verbose_name = "Room"
@@ -186,11 +191,26 @@ class Room(models.Model):
     def __str__(self):
         return "Room Number {0} which named: {1}".format(self.number, self.name)
 
+    def get_room_images(self):
+        images = []
+
+        if hasattr(self, 'room_images'):
+            for i in self.room_images.all():
+                image_obj = {
+                    'room_name': f"{self.name}",
+                    'room_image': f"{i.image.url}"
+                }
+                images.append(image_obj)
+
+            return images
+        return None
+
+
 
 class RoomPhoto(models.Model):
     image = models.ImageField(upload_to="room_images/%Y/%m/%d")
     date_uploaded = models.DateTimeField(auto_now_add=True)
-    room = models.ForeignKey(Room, on_delete=models.CASCADE)
+    room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name='room_images')
     user_uploaded = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:

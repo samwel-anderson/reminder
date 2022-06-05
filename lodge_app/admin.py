@@ -99,7 +99,7 @@ class GuestAdmin(admin.ModelAdmin):
 
 @admin.register(Reservation)
 class ReservationAdmin(admin.ModelAdmin):
-    list_display = ("date_in", "date_out","active","staff_activated","guest","rejected")
+    list_display = ("date_in", "date_out","comfirmed","staff_activated","guest","canceled")
     inlines = [RerservedRoomInline]
 
 
@@ -111,7 +111,7 @@ class ReservedRoomAdmin(admin.ModelAdmin):
 
 @admin.register(Room)
 class RoomAdmin(admin.ModelAdmin):
-    list_display = ("number","name","price","updated_at",)
+    list_display = ("number","name","price","updated_at", 'booked',)
     list_filter = ("number","name","price","updated_at")
     inlines = [RoomPhotoAdminInline,]
 

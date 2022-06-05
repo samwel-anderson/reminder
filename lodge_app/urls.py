@@ -7,6 +7,9 @@ from django.views.generic import RedirectView
 
 urlpatterns = [
     path('', views.index, name='home'),
+    path('room_details/<int:pk>', views.RoomDetails.as_view() ,name= 'room_details' ),
+    path('booking_system/<int:pk>', views.BookingSytem.as_view() ,name= 'booking_system'),
+    path('manageBookingstatus', views.manageBookingStatus, name= 'manageBookingstatus' )
 
     # path('', RedirectView.as_view(url="/")),
     # path('index/',views.index, name = "index"),
