@@ -205,8 +205,6 @@ class Room(models.Model):
             return images
         return None
 
-
-
 class RoomPhoto(models.Model):
     image = models.ImageField(upload_to="room_images/%Y/%m/%d")
     date_uploaded = models.DateTimeField(auto_now_add=True)

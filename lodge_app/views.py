@@ -47,8 +47,7 @@ class RoomDetails(View):
     def get(self, request, pk, *args, **kwargs):
         room = Room.objects.get(id = pk)
         user = request.user if type(request.user) is not AnonymousUser else None
-      
-
+        print(room.get_room_images())
         try:
             my_booked_rooms = Reservation.objects.filter(guest=user)
             context = {
@@ -59,78 +58,70 @@ class RoomDetails(View):
         except :
             context = {
             'room_details': room,
-           
             }
             return render(request, template_name='room_details.html', context=context)
 
     def post(self, request,  pk , *args, **kwargs ):
-      
          if is_ajax(request) and request.POST.get('action') == 'search_room_and_save':
-           
             booked_room = request.POST.get('booked_room')
             check_in = request.POST.get('check_in')
             check_out = request.POST.get('check_out')
             chosen_room =  request.POST.get('change_room')
-            
-            
-            # try:
-            room = Room.objects.get(name=chosen_room)
-            reserving_model, created = Reservation.objects.get_or_create(room = room, guest_id = request.user.id)
-            reverved_rooms, created = ReservedRoom.objects.get_or_create(reservation=reserving_model, room=room)
-            if reserving_model.comfirmed==False:
-                    reserving_model.user = request.user
-                    reserving_model.room = room
-                    reserving_model.date_in = check_in
-                    reserving_model.reservation_code =  uuid.uuid4()
-                    reserving_model.date_out =  check_out
-                    reserving_model.save()
-                
+            try:
+                room = Room.objects.get(name=chosen_room)
+                reserving_model, created = Reservation.objects.get_or_create(room = room, guest_id = request.user.id)
+                reverved_rooms, created = ReservedRoom.objects.get_or_create(reservation=reserving_model, room=room)
+                if reserving_model.comfirmed==False:
+                        reserving_model.user = request.user
+                        reserving_model.room = room
+                        reserving_model.date_in = check_in
+                        reserving_model.reservation_code =  uuid.uuid4()
+                        reserving_model.date_out =  check_out
+                        reserving_model.save()
+                        response = {
+                        'room_booked': {
+                            "user": str(reserving_model.guest),
+                            'room': str(reserving_model.room.name),
+                            'room_image': str(reserving_model.room.thumbnail.url),
+                            "check_in": reserving_model.date_in,
+                            "check_out": reserving_model.date_out ,
+                            "price": reserving_model.room.price,
+                            'r_code': reserving_model.reservation_code,
+                            'room_image_list': json.dumps( reserving_model.room.get_room_images() )
+                        },
+                        'msg': f'You have successfully made a booking {chosen_room} with {reserving_model.reservation_code} reservation code'
+                        }
+                        return JsonResponse(response,safe=False)
+                    
+                elif reserving_model.guest == request.user and reserving_model.comfirmed==False :
                     response = {
-                    'room_booked': {
-                        "user": str(reserving_model.guest),
-                        'room': str(reserving_model.room.name),
-                        'room_image': str(reserving_model.room.thumbnail.url),
-                        "check_in": reserving_model.date_in,
-                        "check_out": reserving_model.date_out ,
-                        "price": reserving_model.room.price,
-                        'r_code': reserving_model.reservation_code,
-                        'room_image_list': json.dumps( reserving_model.room.get_room_images() )
-                    },
-                    'msg': f'Your Search for {chosen_room} room has been made successfully ,you were able to book  for it'
+                        'room_booked': {
+                            "user": str(reserving_model.guest),
+                            'room': str(reserving_model.room.name),
+                            'room_image': str(reserving_model.room.thumbnail.url),
+                            "check_in": reserving_model.date_in,
+                            "check_out": reserving_model.date_out,
+                            "price": reserving_model.room.price,
+                            'r_code': reserving_model.reservation_code,
+                            'room_image_list': json.dumps( reserving_model.room.get_room_images() )
+                        },
+                        'msg': f'You already booked for {chosen_room}  Go head to confirm booking'
+                        }
+                    return JsonResponse(response)
+                else:
+                    response = {
+                        'msg': f'The room is not avilable or already booked for it. Go to you profile to see a list of booked rooms'
                     }
-                    return JsonResponse(response,safe=False)
-                
-            elif reserving_model.guest == request.user and reserving_model.comfirmed==False :
+                    return JsonResponse(response)
+            except:
                 response = {
-                    'room_booked': {
-                        "user": str(reserving_model.guest),
-                        'room': str(reserving_model.room.name),
-                        'room_image': str(reserving_model.room.thumbnail.url),
-                        "check_in": reserving_model.date_in,
-                        "check_out": reserving_model.date_out,
-                        "price": reserving_model.room.price,
-                        'r_code': reserving_model.reservation_code,
-                        'room_image_list': json.dumps( reserving_model.room.get_room_images() )
-                    },
-                    'msg': f'You already booked for {chosen_room}  Go head to confirm booking'
-                    }
-                return JsonResponse(response)
-            else:
-                response = {
-                    'msg': f'The room is not avilable or already booked for it. Go to you profile to see a list of booked rooms'
+                        'msg':f'We have no such type of room, Or You\'re missing some information for your search'
                 }
                 return JsonResponse(response)
-            # except:
-            #     response = {
-            #             'msg':f'We have no such type of room, Or You\'re missing some information for your search'
-            #     }
-            #     return JsonResponse(response)
 
 
            
 def manageBookingStatus(request):
-    print(request.POST)
-    print(request.POST.get('action') == 'comfirm_booking')
     if request.POST.get('action') == 'comfirm_booking':
         chosen_room =  request.POST.get('origin_room')
         _room = Room.objects.get(name=chosen_room)

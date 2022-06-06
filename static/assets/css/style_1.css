@@ -1143,7 +1143,7 @@ b, strong {
 /** Option Panel **/
 .option-panel {
     z-index: 9999;
-    width: 650px;
+    width: auto;
     position: fixed;
     right: 0;
     background: #fff;
