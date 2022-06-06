@@ -18,29 +18,50 @@ import uuid
 
 from . models import  *
 from django.core import serializers
-
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import AnonymousUser
 
 # Create your views here.
 
 def index(request):
-    rooms = Room.objects.filter(published=True, booked=False).order_by('-created_at')
-    my_booked_rooms = Reservation.objects.filter(guest=request.user)
+    user = request.user if type(request.user) is not AnonymousUser else None
+    try:
+        rooms = Room.objects.filter(published=True, booked=False).order_by('-created_at')
+        my_booked_rooms = Reservation.objects.filter(guest=user)
+        context = {
+            'our_best_rooms': rooms,
+            'my_booked_rooms': my_booked_rooms
+        }
+        return render(request, template_name='index.html', context=context)
 
-    context = {
-         'our_best_rooms': rooms,
-        'my_booked_rooms': my_booked_rooms
-    }
-    return render(request, template_name='index.html', context=context)
+    except:
+        rooms = Room.objects.filter(published=True, booked=False).order_by('-created_at')
+        context = {
+            'our_best_rooms': rooms,
+        }
+        return render(request, template_name='index.html', context=context)
+            
+   
 
 class RoomDetails(View):
     def get(self, request, pk, *args, **kwargs):
         room = Room.objects.get(id = pk)
-        my_booked_rooms = Reservation.objects.filter(guest=request.user)
-        context = {
-           'room_details': room,
+        user = request.user if type(request.user) is not AnonymousUser else None
+      
+
+        try:
+            my_booked_rooms = Reservation.objects.filter(guest=user)
+            context = {
+            'room_details': room,
             'my_booked_rooms': my_booked_rooms
-        }
-        return render(request, template_name='room_details.html', context=context)
+            }
+            return render(request, template_name='room_details.html', context=context)
+        except :
+            context = {
+            'room_details': room,
+           
+            }
+            return render(request, template_name='room_details.html', context=context)
 
     def post(self, request,  pk , *args, **kwargs ):
       
