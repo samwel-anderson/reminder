@@ -1,12 +1,15 @@
 from django.contrib import admin
 from .models import *
 
+
 lodge_name = ""
 try:
-    lodge = lodge.objects.first()
+    lodge = Lodge.objects.first()
     lodge_name = lodge.name
 except:
     pass
+
+
 
 admin.site.site_header  =  lodge_name +" Administration"
 admin.site.site_title  =  admin.site.site_header

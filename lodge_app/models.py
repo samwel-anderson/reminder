@@ -1,3 +1,5 @@
+from concurrent.futures.process import _ThreadWakeup
+from re import A
 from django.db import models
 from django.utils.safestring import mark_safe
 from django.contrib.auth.models import User
@@ -179,6 +181,7 @@ class Room(models.Model):
     price = models.DecimalField(max_digits=12, decimal_places=2)
     published = models.BooleanField(default=True, null=True)
     booked = models.BooleanField(default=False, null=True)
+    description = models.TextField(null = True)
     thumbnail= models.ImageField(upload_to='rooms_images/%Y/%m/%d/', null=True)
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
@@ -193,7 +196,6 @@ class Room(models.Model):
 
     def get_room_images(self):
         images = []
-
         if hasattr(self, 'room_images'):
             for i in self.room_images.all():
                 image_obj = {
