@@ -13,7 +13,7 @@
 
 <!-- Option Panel -->
 
-<div class="option-panel option-panel-collased">
+<!-- <div class="option-panel option-panel-collased">
     <div id="sms"></div>
     <h2 style="color:green;">Your Reserved Rooms</h2>
     <table class="table">
@@ -76,7 +76,7 @@
         <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
         </svg>
     </div>
-</div>
+</div> -->
 
 <!-- /Option Panel -->
 
@@ -238,7 +238,7 @@
 <div class="content-area-17 rooms-details-page">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-md-12 col-sm-12">
+            <div class="col-lg-6 col-md-12 col-sm-12">
                 <!-- Rooms details section start -->
                 <div class="rooms-detail-slider ">
 
@@ -343,26 +343,40 @@
                 </div>
                 <!-- Course details section end -->
             </div>
-            <div class="col-lg-4 col-md-12 col-sm-12">
+            <div class="col-lg-6 col-md-12 col-sm-12">
                 <!-- Sidebar start -->
                 <div class="sidebar">
                     <!-- Search area box 3 start -->
                     <div class="sidebar-widget search-area-box-3 clearfix">
-                        <h3>Check Availability</h3>
+                        <h3>Book now</h3>
                         <h4 class="price">${{room_details.price}}/Night</h4>
                         <div class="search-contents">
                             <form  id="form" method="POST">
                                 {% csrf_token %}
                                 <div class="search-your-details">
                                     <div class="row">
+                                        <div class="col-md-6">
+                                             <div class="col-md-12 col-sm-6">
+                                            <div class="form-group">
+                                                <input type="text" id="first_name" name="first_name" class="btn-default" placeholder="First Name">
+                                            </div>
+                                        </div>
                                         <div class="col-md-12 col-sm-6">
+                                            <div class="form-group">
+                                                <input type="text" id="last_name" name="last_name" class="btn-default" placeholder="Last Name">
+                                            </div>
+                                        </div>
+                                        
+                                        </div>
+                                        <div class="col-md-6">
+                                             <div class="col-md-12 col-sm-6">
                                             <div class="form-group">
                                                 <input type="text" id="check_in" name="check_in" class="btn-default datepicker" placeholder="Check In">
                                             </div>
                                         </div>
                                         <div class="col-md-12 col-sm-6">
                                             <div class="form-group">
-                                                <input type="text" id="check_out" name="check_out" class="btn-default datepicker" placeholder="Check Out">
+                                                <input type="tel" id="check_out" name="check_out" class="btn-default datepicker" placeholder="check out">
                                             </div>
                                         </div>
                                         <div hidden class="col-md-12 col-sm-6">
@@ -373,6 +387,11 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        </div>
+                                         <div class="form-group">
+                                                <input type="text" id="phone" name="phone" class="btn-default " placeholder="eg: +255 798-889-009">
+                                         </div>
+                                       
                                        
                                         <div class="col-md-12 col-sm-12">
                                             <div class="form-group mb-0">
@@ -659,15 +678,18 @@
       console.log($('#changed_room').val())
     const form_data = {
                 action:"search_room_and_save",
-                booked_room: '{{room_details.id}}',
+                booked_room_id: '{{room_details.id}}',
+                first_name: $('#first_name').val(),
+                last_name: $('#last_name').val(),
+                phone: $('#phone').val(),
                 check_in : dateFormat( $('#check_in').val(), 'yyyy-MM-dd'),
                 check_out : dateFormat( $('#check_out').val(), 'yyyy-MM-dd'),
-                change_room : $('#changed_room').val(),
+                booked_room_name : $('#changed_room').val(),
                 csrfmiddlewaretoken: '{{ csrf_token }}',
                 dataType: "json",
             }
         
-        
+        console.log(form_data)
         $.ajax({
             type : "POST", 
             url: $(e).data("url"),
@@ -682,7 +704,7 @@
                 localStorage.setItem('booked_room',  JSON.stringify(data.room_booked))
                 let inforContainer =  document.getElementById('booked-room-info')
                 booked_room = localStorage.getItem('booked_room')
-                renderRoomInfor (data.room_booked, inforContainer)
+                //renderRoomInfor (data.room_booked, inforContainer)
             
             },
             failure: function() {
