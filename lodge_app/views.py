@@ -1,5 +1,6 @@
 from datetime import datetime
 from doctest import FAIL_FAST
+from email.policy import default
 import json
 from math import fabs
 
@@ -7,11 +8,14 @@ import string
 
 from multiprocessing import context
 import re
+from subprocess import check_output
 from tabnanny import check
 from unicodedata import name
+from webbrowser import get
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views import View
+from django.db.models import Q
 
 from utils.utilities import is_ajax, reservation_code_generator
 import uuid
@@ -27,7 +31,7 @@ def index(request):
     user = request.user if type(request.user) is not AnonymousUser else None
     try:
         rooms = Room.objects.filter(published=True, booked=False).order_by('-created_at')
-        my_booked_rooms = Reservation.objects.filter(guest=user)
+        my_booked_rooms = Reservation.objects.filter(guest=user )
         context = {
             'our_best_rooms': rooms,
             'my_booked_rooms': my_booked_rooms
@@ -63,85 +67,104 @@ class RoomDetails(View):
 
     def post(self, request,  pk , *args, **kwargs ):
          if is_ajax(request) and request.POST.get('action') == 'search_room_and_save':
-            booked_room = request.POST.get('booked_room')
+            booked_room_id = request.POST.get('booked_room_id')
             check_in = request.POST.get('check_in')
+            _first_name = request.POST.get('first_name')
+            _last_name = request.POST.get('last_name')
+            _phone = request.POST.get('phone')
             check_out = request.POST.get('check_out')
-            chosen_room =  request.POST.get('change_room')
-            try:
-                room = Room.objects.get(name=chosen_room)
-                reserving_model, created = Reservation.objects.get_or_create(room = room, guest_id = request.user.id)
-                reverved_rooms, created = ReservedRoom.objects.get_or_create(reservation=reserving_model, room=room)
-                if reserving_model.comfirmed==False:
-                        reserving_model.user = request.user
-                        reserving_model.room = room
-                        reserving_model.date_in = check_in
-                        reserving_model.reservation_code =  uuid.uuid4()
-                        reserving_model.date_out =  check_out
-                        reserving_model.save()
-                        response = {
-                        'room_booked': {
-                            "user": str(reserving_model.guest),
-                            'room': str(reserving_model.room.name),
-                            'room_image': str(reserving_model.room.thumbnail.url),
-                            "check_in": reserving_model.date_in,
-                            "check_out": reserving_model.date_out ,
-                            "price": reserving_model.room.price,
-                            'r_code': reserving_model.reservation_code,
-                            'room_image_list': json.dumps( reserving_model.room.get_room_images() )
-                        },
-                        'msg': f'You have successfully made a booking {chosen_room} with {reserving_model.reservation_code} reservation code'
-                        }
-                        return JsonResponse(response,safe=False)
-                    
-                elif reserving_model.guest == request.user and reserving_model.comfirmed==False :
+            chosen_room =  request.POST.get('booked_room_name')
+
+            print(booked_room_id)
+            # try:
+            guest, created = Guest.objects.get_or_create(
+                first_name=_first_name,
+                last_name = _first_name,
+                phone = _phone
+            )
+            print(guest)
+            room= Room.objects.get(id=booked_room_id)
+            reserving_model, created = Reservation.objects.get_or_create(room = room, guest_id=guest.id)
+            reverved_rooms, created = ReservedRoom.objects.get_or_create(reservation=reserving_model, room=room, )
+            if room.booked==False and reserving_model.comfirmed==False:
+                    reserving_model.user = request.user
+                    reserving_model.room = room
+                    reserving_model.date_in = check_in
+                    reserving_model.reservation_code =  uuid.uuid4()
+                    reserving_model.date_out =  check_out
+                    reserving_model.save()
                     response = {
-                        'room_booked': {
-                            "user": str(reserving_model.guest),
-                            'room': str(reserving_model.room.name),
-                            'room_image': str(reserving_model.room.thumbnail.url),
-                            "check_in": reserving_model.date_in,
-                            "check_out": reserving_model.date_out,
-                            "price": reserving_model.room.price,
-                            'r_code': reserving_model.reservation_code,
-                            'room_image_list': json.dumps( reserving_model.room.get_room_images() )
-                        },
-                        'msg': f'You already booked for {chosen_room}  Go head to confirm booking'
-                        }
-                    return JsonResponse(response)
-                else:
-                    response = {
-                        'msg': f'The room is not avilable or already booked for it. Go to you profile to see a list of booked rooms'
+                    'room_booked': {
+                        "user": str(reserving_model.guest),
+                        'room': str(reserving_model.room.name),
+                        'room_image': str(reserving_model.room.thumbnail.url),
+                        "check_in": reserving_model.date_in,
+                        "check_out": reserving_model.date_out ,
+                        "price": reserving_model.room.price,
+                        'r_code': reserving_model.reservation_code,
+                        'room_image_list': json.dumps( reserving_model.room.get_room_images() )
+                    },
+                    'msg': f'You have successfully made a booking {chosen_room} with {reserving_model.reservation_code} reservation code'
                     }
-                    return JsonResponse(response)
-            except:
+                    return JsonResponse(response,safe=False)
+                
+            elif reserving_model.guest == request.user and reserving_model.comfirmed==False :
                 response = {
-                        'msg':f'We have no such type of room, Or You\'re missing some information for your search'
+                    'room_booked': {
+                        "user": str(reserving_model.guest),
+                        'room': str(reserving_model.room.name),
+                        'room_image': str(reserving_model.room.thumbnail.url),
+                        "check_in": reserving_model.date_in,
+                        "check_out": reserving_model.date_out,
+                        "price": reserving_model.room.price,
+                        'r_code': reserving_model.reservation_code,
+                        'room_image_list': json.dumps( reserving_model.room.get_room_images() )
+                    },
+                    'msg': f'You already booked for {chosen_room}  Go head to confirm booking'
+                    }
+                return JsonResponse(response)
+            else:
+                response = {
+                    'msg': f'The room is not avilable or already booked for it. Go to you profile to see a list of booked rooms'
                 }
                 return JsonResponse(response)
+            # except:
+            #     response = {
+            #             'msg':f'We have no such type of room, Or You\'re missing some information for your search'
+            #     }
+            #     return JsonResponse(response)
 
 
            
 def manageBookingStatus(request):
     if request.POST.get('action') == 'comfirm_booking':
-        chosen_room =  request.POST.get('origin_room')
-        _room = Room.objects.get(name=chosen_room)
-        booking_model= Reservation.objects.get(room = _room, guest = request.user)
-
-        booking_model.comfirmed = True
-        booking_model.canceled = False
-        booking_model.save()
-
-        _room .booked = True
-        _room .save()
-        response = {
-                    'msg':f'Booking conformed'
+        reservation_id =  request.POST.get('reservation_id')
+        room_id =  request.POST.get('room_id')
+        _room = Room.objects.get(id=room_id)
+        booking_model= Reservation.objects.get(room = _room, id =reservation_id)
+        if _room.booked ==True:
+            response = {
+                'msg':f'you delayed in comfirming the Booking. Already taken'
             }
-        return JsonResponse(response)
+            return JsonResponse(response)
+        else:
+         
+            booking_model.comfirmed = True
+            booking_model.canceled = False
+            booking_model.save()
+
+            _room .booked = True
+            _room .save()
+            response = {
+                        'msg':f'Booking conformed'
+                }
+            return JsonResponse(response)
 
     else:
-        chosen_room =  request.POST.get('origin_room')
-        _room  = Room.objects.get(name=chosen_room)
-        booking_model= Reservation.objects.get(room = _room , guest = request.user)
+        reservation_id =  request.POST.get('reservation_id')
+        room_id =  request.POST.get('room_id')
+        _room = Room.objects.get(id=room_id)
+        booking_model= Reservation.objects.get(room = _room, id =reservation_id)
 
         booking_model.comfirmed =False
         booking_model.canceled =True
@@ -154,3 +177,39 @@ def manageBookingStatus(request):
             }
         return JsonResponse(response)
     
+
+def searchReservation(request):
+    check_in = request.POST.get('check_in')
+    check_out = request.POST.get('check_out')
+    phone=  request.POST.get('phone')
+
+    res_code = request.POST.get('res_code')
+    reservation_list = []
+    print(f'====>{check_out} \n, ====> {check_in}\n, ===>{res_code}')
+    
+    queryset = Reservation.objects.filter(reservation_code = res_code, guest__phone =phone )
+    print(queryset)
+    serializer =serializers.serialize('json', queryset)
+  
+    for data in queryset:
+        reservation_obj={
+            'res_id':data.id,
+            'room_image': data.room.thumbnail.url,
+            'room_name': data.room.name,
+            'room_id': data.room.id,
+            'room_status': data.room.booked,
+            'date_in':data.date_in, 
+            'date_out': data.date_out,
+            'res_code':data.reservation_code,
+            'comfirmed':data.comfirmed,
+            'canceled':data.canceled
+            }
+        reservation_list.append(reservation_obj)
+
+    response = {
+        'detailed_qs':json.dumps(reservation_list,default=str),
+        'query_set': serializer,
+        'msg':f'read to go'
+        }
+
+    return JsonResponse(response)

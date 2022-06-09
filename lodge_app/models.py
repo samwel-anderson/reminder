@@ -1,10 +1,27 @@
 from concurrent.futures.process import _ThreadWakeup
-from re import A
+from pyexpat import model
 from django.db import models
 from django.utils.safestring import mark_safe
 from django.contrib.auth.models import User
 import random
 
+
+class Guest(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='guest_set', null=True)
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    phone = models.CharField(max_length=15)
+    updated_at = models.DateTimeField(auto_now=True)
+    address = models.CharField(max_length=100, null=True, blank=True)
+    member_since = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Guest"
+        verbose_name_plural = "Guests"
+        db_table = "Lodge_guest"
+
+    def __str__(self):
+        return self.first_name + " " + str(self.last_name) + " Phone: " + self.phone
 
 class Amenity(models.Model):
     name = models.CharField(max_length=50, null=False, blank=False)
@@ -127,7 +144,7 @@ class Reservation(models.Model):
     room = models.ForeignKey("Room", on_delete=models.CASCADE, null=True)
     comfirmed = models.BooleanField(default=False)
     canceled = models.BooleanField(default=False)
-    guest = models.ForeignKey(User, on_delete=models.CASCADE, related_name="guest")
+    guest = models.ForeignKey(Guest, on_delete=models.CASCADE, related_name="guest", null=True)
     reservation_code = models.CharField(null=True, max_length= 40)
     staff_activated = models.ForeignKey(User, on_delete=models.CASCADE, related_name="staff", null=True)
 
@@ -157,21 +174,7 @@ class ReservedRoom(models.Model):
         db_table = "Lodge_reserved_room"
 
 
-class Guest(models.Model):
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    phone = models.CharField(max_length=15)
-    updated_at = models.DateTimeField(auto_now=True)
-    address = models.CharField(max_length=100, null=True, blank=True)
-    member_since = models.DateTimeField(auto_now_add=True)
 
-    class Meta:
-        verbose_name = "Guest"
-        verbose_name_plural = "Guests"
-        db_table = "Lodge_guest"
-
-    def __str__(self):
-        return self.first_name + " " + str(self.last_name) + " Phone: " + self.phone
 
 
 class Room(models.Model):

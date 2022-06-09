@@ -11,17 +11,17 @@
 <div class="page_loader" style="background: url(static/assets/css/loader.gif) center no-repeat #fff;"></div>
 
 <!-- Option Panel -->
-<div class="option-panel option-panel-collased">
-    <div id="sms"></div>
+<!-- <div class="option-panel option-panel-collased">
+    
     <h2 style="color:green;">Your Reserved Rooms</h2>
     <table class="table">
         <thead>
             <tr>
-             <th scope="col">Image</th>
-            <th scope="col">Reservation code</th>
-            <th scope="col">Name</th>
-            <th scope="col">Comfirmed</th>
-            <th scope="col">action</th>
+                <th scope="col">Image</th>
+                <th scope="col">Reservation code</th>
+                <th scope="col">Name</th>
+                <th scope="col">Comfirmed</th>
+                <th scope="col">action</th>
             </tr>
         </thead>
         <tbody>
@@ -36,6 +36,7 @@
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
                         </svg>
                     </div>
+                   
                    
                       {%else%}
 
@@ -58,7 +59,7 @@
               </button>
                        
                     {%else%}
-                       <button onclick="comfirmBooking(event) "value="{{room.room.name}}" room="{{room.room.name}}"  type="button" class="btn btn-outline-success">
+                    <button onclick="comfirmBooking(event) "value="{{room.room.name}}" room="{{room.room.name}}"  type="button" class="btn btn-outline-success">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
                      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
                     </svg>
@@ -70,6 +71,7 @@
             {%empty%}
             No Booked room yet
             {%endfor%}
+           
             
         </tbody>
     </table>
@@ -79,7 +81,7 @@
         <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
         </svg>
     </div>
-</div>
+</div> -->
 <!-- /Option Panel -->
 
 <!-- Main header start -->
@@ -228,52 +230,31 @@
                                     <a class="btn-lg btn-4 btn-6" href="#">Get Started Now</a>
                                 </div>
                             </div>
-                            <!-- <div class="col-lg-5 col-md-12 wow fadeInRight delay-04s">
+                            <div class="col-lg-5 col-md-12 wow fadeInRight delay-04s">
                                 <div class="search-area-box-2">
                                     <div class="search-contents">
-                                        <form method="GET">
+                                        <form id="search-form" method="POST">
+                                            {% csrf_token%}
                                             <h4>Search Your <span>Rooms</span></h4>
-                                            <div class="form-group">
-                                                <input type="text" class="btn-default datepicker" placeholder="Check In">
+                                            <div hidden class="form-group">
+                                                <input type="text" name="check-in" id="check-in" class="btn-default datepicker" placeholder="Check In">
                                             </div>
-                                            <div class="form-group clearfix">
-                                                <input type="text" class="btn-default datepicker" placeholder="Check Out">
+                                            <div hidden class="form-group clearfix">
+                                                <input type="text" name="check-out" id="check-out" class="btn-default datepicker" placeholder="Check Out">
                                             </div>
-                                            <div class="form-group clearfix">
-                                                <select class="selectpicker search-fields" name="room">
-                                                    <option>Room</option>
-                                                    <option>Single Room</option>
-                                                    <option>Double Room</option>
-                                                    <option>Deluxe Room</option>
-                                                </select>
+                                             <div  class="form-group clearfix">
+                                                <input type="tel" class="btn-default" name="phone" id ='phone'  placeholder="Phone Number">
                                             </div>
-                                            <div class="form-group">
-                                                <select class="selectpicker search-fields" name="adults">
-                                                    <option>Adult</option>
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <select class="selectpicker search-fields" name="children">
-                                                    <option>Child</option>
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
-                                                </select>
+                                            <div  class="form-group clearfix">
+                                                <input type="text" class="btn-default" name="reservation-code" id ='reservation-code' maxlength="4"  placeholder="Reservation Code">
                                             </div>
                                             <div class="form-group mb-0">
-                                                <button class="w-100 btn-theme btn-4 btn-7">Search</button>
+                                                <button type="submit" class="w-100 btn-theme btn-4 btn-7">Search</button>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1150,6 +1131,41 @@
         </div>
     </div>
 </footer>
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="res_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div  class="modal-body">
+        <div id="sms"></div>
+        <table class="table">
+        <thead>
+            <th scope="col">Image</th>
+            <th scope="col">Reservation code</th>
+            <th scope="col">Name</th>
+            <th scope="col">Comfirmed</th>
+            <th scope="col">action</th>
+        </thead>
+        <tbody id="modal-body">
+           
+           
+        </tbody>
+        </table>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- Footer end -->
 
 <script src="{% static 'assets/js/jquery.min.js'%}"></script>
@@ -1179,51 +1195,135 @@
 <!-- Custom javascript -->
 
 <script>
+//search-form
+    function dateFormat(inputDate, format) {
+    //parse the input date
+    const date = new Date(inputDate);
 
-    function comfirmBooking(event){
-    origin_room = event.target.getAttribute('room');
-    console.log( event.target.value,   origin_room)
-   // Getter
+    //extract the parts of the date
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();    
 
-    $.ajax({
-        type : "POST", 
-        url: '/manageBookingstatus',
-        data: {
-            action:"comfirm_booking",
-            room: event.target.value,
-            origin_room:  origin_room,
-            csrfmiddlewaretoken: '{{ csrf_token }}',
-            dataType: "json",
-        },
-        success: function(data){
-           let sms = document.getElementById('sms')
-            sms.innerHTML = `<div class="alert alert-success d-flex align-items-center" role="alert">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                        </svg>
-                        <div>
-                            ${data.msg}, the status will change in few minus
+    //replace the month
+    format = format.replace("MM", month.toString().padStart(2,"0"));        
 
-                        </div>
-                        </div>`
-            sms.style.display = 'block'
-        },
-        failure: function() {
-        }
-    });
-  
+    //replace the year
+    if (format.indexOf("yyyy") > -1) {
+        format = format.replace("yyyy", year.toString());
+    } else if (format.indexOf("yy") > -1) {
+        format = format.replace("yy", year.toString().substr(2,2));
+    }
+
+    //replace the day
+    format = format.replace("dd", day.toString().padStart(2,"0"));
+
+    return format;
 }
 
+  $('#search-form').on('submit', function(e) {
+        
+  e.preventDefault();
+  if($('#phone').val() !== "" && $('#reservation-code').val()!== ""){
+      console.log(dateFormat( $('#check-in').val(), 'yyyy-MM-dd'))
+      console.log(dateFormat( $('#check-out').val(), 'yyyy-MM-dd'))
+      console.log($('#reservation-code').val())
+    const form_data = {
+                action:"search_room",
+                check_in : dateFormat( $('#check-in').val(), 'yyyy-MM-dd'),
+                check_out : dateFormat( $('#check-out').val(), 'yyyy-MM-dd'),
+                phone :$('#phone').val(),
+                res_code : $('#reservation-code').val(),
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                dataType: "json",
+            }
+
+            console.log(form_data)
+        $.ajax({
+            type : "POST", 
+            url: '/search-reservation',
+            data: form_data,
+            success: function(data){
+                const myModal = new bootstrap.Modal(document.getElementById('res_modal'), {
+                keyboard: false
+                })
+                const  final_data = JSON.parse(data.query_set)
+                const final_detaied = JSON.parse(data['detailed_qs'])
+                console.log(final_detaied)
+                let modal_body= document.getElementById('modal-body')
+                modal_body.innerHTML = ''
+                let html = ''
+                for(let index =0; index < final_detaied.length; index++){
+                    const fields = final_detaied[index]
+                    html += `
+                     <tr>
+                        <th scope="row">  <img width="50" height="50" src="${fields.room_image}" class="rounded" alt="..."></th>
+                        <td>${fields.res_code}</td>
+                        <td>${fields.room_name}</td>
+                        <td>${fields.comfirmed? `
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                             </svg>
+                             `: `
+                             <svg style="color:red;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                            </svg>`}
+                        </td>
+                        <td>${fields.comfirmed? `
+                            <button onclick="concelBooking(event)" value="${fields.res_id}" room="${fields.room_id}" type="button" class="btn btn-outline-danger">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"></path>
+                                </svg>
+                                Cancel
+                            </button>
+                                `:`
+                              
+                                <button onclick="comfirmBooking(event)" value="${fields.res_id}" room="${fields.room_id}"  type="button" class="btn btn-outline-success ${fields.room_status?`disable`:''}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                </svg>
+                                Comfirm
+                                </button>
+                             
+                            
+                                `}
+                        </td>
+                    </tr>
+                    `
+               }
+
+               modal_body.innerHTML= html
+                myModal.show()
+            },
+            failure: function(error) {
+                console.log(error)
+            }
+        });
+        
+
+      }
+      else  {
+          console.log($('#check-in').val())
+            //console.log($('#check_out').val())
+            //let sms = document.getElementById('sms-1')
+            //sms.innerText = `Fill in all fields`
+            //sms.style.display = 'block' 
+            //console.log($('#changed_room').val())
+    }
+ });    
+
+  
+
 function concelBooking(event){
-    origin_room = event.target.getAttribute('room');
-    console.log( event.target.value,   origin_room)
+    room_id = event.target.getAttribute('room');
+    console.log( event.target.value)
     $.ajax({
         type : "POST", 
         url: '/manageBookingstatus',
         data: {
             action:"concel_booking",
-            changed_room: event.target.value,
-            origin_room: origin_room,
+            reservation_id: event.target.value,
+            room_id: room_id,
             csrfmiddlewaretoken: '{{ csrf_token }}',
             dataType: "json",
         },
@@ -1244,6 +1344,42 @@ function concelBooking(event){
         }
     });
 }
+
+
+
+
+function comfirmBooking(event){
+    room_id = event.target.getAttribute('room');
+    console.log( event.target.value,room_id)
+    $.ajax({
+        type : "POST", 
+        url: '/manageBookingstatus',
+        data: {
+            action:"comfirm_booking",
+            reservation_id: event.target.value,
+            room_id: room_id,
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+            dataType: "json",
+        },
+    success: function(data){
+        let sms = document.getElementById('sms')
+        sms.innerHTML = `<div class="alert alert-success d-flex align-items-center" role="alert">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                    </svg>
+                    <div>
+                        ${data.msg}, the status will change in few minus
+
+                    </div>
+                    </div>`
+        sms.style.display = 'block'
+    },
+    failure: function() {
+    }
+});
+
+}
+
 </script>
 
 </body>
