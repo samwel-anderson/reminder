@@ -227,7 +227,7 @@
                                 <div class="banner-test-info wow fadeInLeft delay-04s">
                                     <h2>Welcome To {{lodge}} lodge</h2>
                                     <p>Lorem ipsum dolor sit amet, conconsectetuer adipiscing elit Lorem ipsum dolor sit amet, conconsectetuer</p>
-                                    <a class="btn-lg btn-4 btn-6" href="#">Get Started Now</a>
+                                    <a class="btn-lg btn-4 btn-6" href="{% url 'rooms'%}">Get Started Now</a>
                                 </div>
                             </div>
                             <div class="col-lg-5 col-md-12 wow fadeInRight delay-04s">
@@ -464,18 +464,18 @@
         <div class="container">
             <!-- Main title -->
             <div class="main-title">
-                <h1>Our Facilties</h1>
+                <h1>Our Polices</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
             </div>
             <div class="row">
-                {%for a in amenities%}
+                {%for a in polices %}
                 <div class="col-lg-4 col-md-6 col-sm-12 wow fadeInLeft delay-04s">
                     <div class="services-box-2 d-flex">
                         <div class="icon">
                             <i class="flaticon-school-call-phone-reception"></i>
                         </div>
                         <div class="contant">
-                            <h3><a href="#">{{a.name}}</a></h3>
+                            <h3><a href="#">{{a.title}}</a></h3>
                             <p>{{a.description}}</p>
                         </div>
                     </div>
