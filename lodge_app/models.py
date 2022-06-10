@@ -25,8 +25,9 @@ class Guest(models.Model):
 
 class Amenity(models.Model):
     name = models.CharField(max_length=50, null=False, blank=False)
+    description = models.TextField(null=True, blank=False)
     faIcon = models.CharField(max_length=50, null=True, blank=True)
-    lodge = models.ForeignKey("Lodge", on_delete=models.CASCADE)
+    lodge = models.ForeignKey("Lodge", on_delete=models.CASCADE, related_name='amenities')
 
     class Meta:
         verbose_name = "Amenity"
