@@ -32,16 +32,22 @@ def index(request):
     try:
         rooms = Room.objects.filter(published=True, booked=False).order_by('-created_at')
         my_booked_rooms = Reservation.objects.filter(guest=user )
+        lodge = Lodge.objects.all().first()
+        print(lodge)
         context = {
             'our_best_rooms': rooms,
-            'my_booked_rooms': my_booked_rooms
+            'my_booked_rooms': my_booked_rooms,
+            'lodge': lodge
         }
         return render(request, template_name='index.html', context=context)
 
     except:
         rooms = Room.objects.filter(published=True, booked=False).order_by('-created_at')
+        lodge = Lodge.objects.all().first()
+        print(lodge)
         context = {
             'our_best_rooms': rooms,
+             'lodge': lodge
         }
         return render(request, template_name='index.html', context=context)
             

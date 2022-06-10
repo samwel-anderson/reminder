@@ -225,7 +225,7 @@
                         <div class="row bti-section">
                             <div class="col-lg-7 col-md-12 align-self-center">
                                 <div class="banner-test-info wow fadeInLeft delay-04s">
-                                    <h2>Welcome To our lodge</h2>
+                                    <h2>Welcome To {{lodge}} lodge</h2>
                                     <p>Lorem ipsum dolor sit amet, conconsectetuer adipiscing elit Lorem ipsum dolor sit amet, conconsectetuer</p>
                                     <a class="btn-lg btn-4 btn-6" href="#">Get Started Now</a>
                                 </div>
@@ -1277,15 +1277,12 @@
                                 Cancel
                             </button>
                                 `:`
-                              
                                 <button onclick="comfirmBooking(event)" value="${fields.res_id}" room="${fields.room_id}"  type="button" class="btn btn-outline-success ${fields.room_status?`disable`:''}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
                                 <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
                                 </svg>
                                 Comfirm
                                 </button>
-                             
-                            
                                 `}
                         </td>
                     </tr>
