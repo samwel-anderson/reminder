@@ -88,131 +88,6 @@
 {% include 'html_utils/header.html' %}
 <!-- Main header end -->
 
-<!-- Sidenav start -->
-<nav id="sidebar" class="nav-sidebar sidebar-heading-section">
-    <!-- Close btn-->
-    <div id="dismiss">
-        <i class="fa fa-close"></i>
-    </div>
-    <div class="sidebar-inner">
-        <div class="sidebar-logo">
-            <img src="{% static 'assets/img/logo.png'%}" alt="sidebarlogo">
-        </div>
-        <div class="sidebar-navigation">
-            <h3 class="heading">Pages</h3>
-            <ul class="menu-list">
-                <li><a href="#" class="active pt0">Home<em class="fa fa-chevron-down"></em></a>
-                   
-                </li>
-                <li><a href="#">Rooms <em class="fa fa-chevron-down"></em></a>
-                   
-                </li>
-                <li>
-                    <a href="#">Pages <em class="fa fa-chevron-down"></em></a>
-                    <ul>
-                        <li>
-                            <a href="#">About Us<em class="fa fa-chevron-down"></em></a>
-                            <ul>
-                                <li><a href="about.html">About Us</a></li>
-                                <li><a href="about-2.html">About Us 2</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">Gallery<em class="fa fa-chevron-down"></em></a>
-                            <ul>
-                                <li><a href="gallery-3column.html">Gallery 3 Column</a></li>
-                                <li><a href="gallery-4column.html">Gallery 4 Column</a></li>
-                                <li><a href="gallery-masonry.html">Gallery Masonry</a></li>
-                            </ul>
-                        </li>
-                        {% comment %} <li><a href="">Booking System</a></li> {% endcomment %}
-                        <li>
-                            <a href="#">Staff <em class="fa fa-chevron-down"></em></a>
-                            <ul>
-                                <li><a href="staff.html">Staff</a></li>
-                                <li><a href="staff-2.html">Staff 2</a></li>
-                                <li><a href="staff-3.html">Staff 3</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">Events <em class="fa fa-chevron-down"></em></a>
-                            <ul>
-                                <li><a href="events.html">Events</a></li>
-                                <li><a href="events-right-sidebar.html">Events Right Sidebar</a></li>
-                                <li><a href="events-details.html">Events Details</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="pricing-tables.html">Pricing Tables</a></li>
-                        <li><a href="typography.html">Typography</a></li>
-                        <li><a href="faq.html">Faq</a></li>
-                        <li><a href="login.html">Login</a></li>
-                        <li><a href="signup.html">Signup</a></li>
-                        <li><a href="forgot-password.html">Forgot Password</a></li>
-                        <li><a href="404.html">404 Error</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Contact <em class="fa fa-chevron-down"></em></a>
-                    <ul>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="contact-2.html">Contact 2</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Blog <em class="fa fa-chevron-down"></em></a>
-                    <ul>
-                        <li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
-                        <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
-                        <li><a href="blog-full-width.html">Blog Fullwidth</a></li>
-                        <li><a href="blog-creative.html">Blog Creative</a></li>
-                        <li><a href="blog-details.html">Blog Detail</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        <div class="get-in-touch">
-            <h3 class="heading">Get in Touch</h3>
-            <div class="sidebar-contact-info">
-                <div class="icon">
-                    <i class="fa fa-phone"></i>
-                </div>
-                <div class="body-info">
-                    <a href="tel:0477-0477-8556-552">0477 8556 552</a>
-                </div>
-            </div>
-            <div class="sidebar-contact-info">
-                <div class="icon">
-                    <i class="fa fa-envelope"></i>
-                </div>
-                <div class="body-info">
-                    <a href="#">info@themevessel.com</a>
-                </div>
-            </div>
-            <div class="sidebar-contact-info mb-0">
-                <div class="icon">
-                    <i class="fa fa-fax"></i>
-                </div>
-                <div class="body-info">
-                    <a href="tel:0477-0477-8556-552">0266 8556 787</a>
-                </div>
-            </div>
-        </div>
-        <div class="get-social">
-            <h3 class="heading">Get Social</h3>
-            <a href="#" class="facebook-bg">
-                <i class="fa fa-facebook"></i>
-            </a>
-            <a href="#" class="twitter-bg">
-                <i class="fa fa-twitter"></i>
-            </a>
-            <a href="#" class="google-bg">
-                <i class="fa fa-google"></i>
-            </a>
-            <a href="#" class="linkedin-bg">
-                <i class="fa fa-linkedin"></i>
-            </a>
-        </div>
-    </div>
-</nav>
-<!-- Sidenav end -->
 
 <!-- Banner start -->
 <div class="banner" id="banner-2">
@@ -226,7 +101,7 @@
                             <div class="col-lg-7 col-md-12 align-self-center">
                                 <div class="banner-test-info wow fadeInLeft delay-04s">
                                     <h2>Welcome To {{lodge}} lodge</h2>
-                                    <p>Lorem ipsum dolor sit amet, conconsectetuer adipiscing elit Lorem ipsum dolor sit amet, conconsectetuer</p>
+                                    <p> {{lodge.description}}</p>
                                     <a class="btn-lg btn-4 btn-6" href="{% url 'rooms'%}">Get Started Now</a>
                                 </div>
                             </div>
@@ -235,7 +110,7 @@
                                     <div class="search-contents">
                                         <form id="search-form" method="POST">
                                             {% csrf_token%}
-                                            <h4>Search Your <span>Rooms</span></h4>
+                                            <h4>View my <span>Reservations</span></h4>
                                             <div hidden class="form-group">
                                                 <input type="text" name="check-in" id="check-in" class="btn-default datepicker" placeholder="Check In">
                                             </div>
@@ -264,78 +139,6 @@
 </div>
 <!-- Banner end -->
 
-<!-- Search area box 1 start -->
-<div class="search-area-box-1 search-area-box-12">
-    <div class="container">
-        <div class="search-contents">
-            <form method="GET">
-                <div class="row g-0 search-your-details">
-                    <div class="col-lg-3 col-md-12 align-self-center">
-                        <div class="search-your-rooms">
-                            <h4>Search</h4>
-                            <h3 class="room-header">Your <span>Rooms</span></h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-9 col-md-12">
-                        <div class="row">
-                            <div class="col-md-4 col-sm-6 col-12 col-pad-0">
-                                <div class="form-group">
-                                    <input type="text" class="btn-default datepicker" placeholder="Check In">
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-6 col-12 col-pad-0">
-                                <div class="form-group">
-                                    <input type="text" class="btn-default datepicker" placeholder="Check Out">
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-6 col-12 col-pad-0">
-                                <div class="form-group">
-                                    <select class="selectpicker search-fields" name="room">
-                                        <option>Room</option>
-                                        <option>Single Room</option>
-                                        <option>Double Room</option>
-                                        <option>Deluxe Room</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-6 col-12 col-pad-0">
-                                <div class="form-group">
-                                    <select class="selectpicker search-fields" name="adults">
-                                        <option>Adult</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-6 col-12 col-pad-0">
-                                <div class="form-group">
-                                    <select class="selectpicker search-fields" name="children">
-                                        <option>Child</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-6 col-12 col-pad-0">
-                                <div class="form-group">
-                                    <button class="btn-md btn-theme btn-4 btn-7 w-100">Search</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!-- Search area box 1 end -->
-
 <!-- About hotel alpha start -->
 <div class="about-hotel-alpha content-area-6">
     <div class="container">
@@ -347,14 +150,13 @@
                         <div class="image-2"><img src="{% static 'assets/img/img-5.jpg'%}" class="rounded" alt="photo"></div>
                     </div>
                     <div class="about-box-Experience">
-                        <h3 class="text-white">38</h3>
+                        <h3 class="text-white">2</h3>
                         <p class="mb-0 text-white">Years of Experience</p>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6 col-md-12 wow fadeInRight delay-04s align-self-center">
                 <div class="about-content-section">
-                    <h5>Hotel <span>Bayview</span></h5>
                     <h1>Welcome To Hotel Alpha</h1>
                     <ul class="network-list mb-40">
                         <li>
@@ -388,7 +190,7 @@
             <!-- Main title -->
             <div class="main-title">
                 <h1>Our Best Rooms</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+                <p>Our lodge offers the finest accommodations featuring comfortable rooms</p>
             </div>
             <div class="row wow fadeInUp delay-04s">
                {% for room in our_best_rooms %}
@@ -465,7 +267,7 @@
             <!-- Main title -->
             <div class="main-title">
                 <h1>Our Polices</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+                <p>Below are our Lodge Policies, please adhere for the best stay on our premises</p>
             </div>
             <div class="row">
                 {%for a in polices %}
