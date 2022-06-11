@@ -61,14 +61,16 @@ def index(request):
 def room(request):
     rooms = Room.objects.all()
     amenities = Amenity.objects.all()
-   
+
+    lodge = Lodge.objects.all().first()
     paginator = Paginator(rooms, 2) # Show 25 contacts per page.
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
         'rooms': page_obj,
-        'amenities': amenities
+        'amenities': amenities,
+        'lodge': lodge,
 
     }
     return render(request, template_name='rooms.html', context=context)
@@ -78,16 +80,19 @@ class RoomDetails(View):
         room = Room.objects.get(id = pk)
         user = request.user if type(request.user) is not AnonymousUser else None
         print(room.get_room_images())
+        lodge = Lodge.objects.all().first()
         try:
             my_booked_rooms = Reservation.objects.filter(guest=user)
             context = {
             'room_details': room,
-            'my_booked_rooms': my_booked_rooms
+            'my_booked_rooms': my_booked_rooms,
+            'lodge': lodge,
             }
             return render(request, template_name='room_details.html', context=context)
         except :
             context = {
             'room_details': room,
+            'lodge': lodge,
             }
             return render(request, template_name='room_details.html', context=context)
 
@@ -100,6 +105,7 @@ class RoomDetails(View):
             _phone = request.POST.get('phone')
             check_out = request.POST.get('check_out')
             chosen_room =  request.POST.get('booked_room_name')
+
 
             print(booked_room_id)
             # try:

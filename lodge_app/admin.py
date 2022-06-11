@@ -102,7 +102,7 @@ class GuestAdmin(admin.ModelAdmin):
 
 @admin.register(Reservation)
 class ReservationAdmin(admin.ModelAdmin):
-    list_display = ("date_in", "date_out","comfirmed","staff_activated","guest","canceled")
+    list_display = ("date_in", "date_out", 'reservation_code', "comfirmed","staff_activated","guest","canceled")
     inlines = [RerservedRoomInline]
 
 
