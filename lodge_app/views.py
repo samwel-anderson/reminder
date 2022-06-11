@@ -63,7 +63,7 @@ def room(request):
     amenities = Amenity.objects.all()
 
     lodge = Lodge.objects.all().first()
-    paginator = Paginator(rooms, 2) # Show 25 contacts per page.
+    paginator = Paginator(rooms, 5) # Show 25 contacts per page.
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
