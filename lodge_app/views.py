@@ -24,6 +24,8 @@ from . models import  *
 from django.core import serializers
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import AnonymousUser
+from django.core.paginator import Paginator
+
 
 # Create your views here.
 
@@ -32,20 +34,44 @@ def index(request):
     try:
         rooms = Room.objects.filter(published=True, booked=False).order_by('-created_at')
         my_booked_rooms = Reservation.objects.filter(guest=user )
+        lodge = Lodge.objects.all().first()
+        polices= Policy.objects.all()
         context = {
             'our_best_rooms': rooms,
-            'my_booked_rooms': my_booked_rooms
+            'my_booked_rooms': my_booked_rooms,
+            'lodge': lodge,
+            'polices': polices
         }
         return render(request, template_name='index.html', context=context)
 
     except:
         rooms = Room.objects.filter(published=True, booked=False).order_by('-created_at')
+        lodge = Lodge.objects.all().first()
+        polices= Policy.objects.all()
+
+        print(lodge)
         context = {
             'our_best_rooms': rooms,
+             'lodge': lodge,
+           'polices': polices
         }
         return render(request, template_name='index.html', context=context)
             
    
+def room(request):
+    rooms = Room.objects.all()
+    amenities = Amenity.objects.all()
+   
+    paginator = Paginator(rooms, 2) # Show 25 contacts per page.
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {
+        'rooms': page_obj,
+        'amenities': amenities
+
+    }
+    return render(request, template_name='rooms.html', context=context)
 
 class RoomDetails(View):
     def get(self, request, pk, *args, **kwargs):

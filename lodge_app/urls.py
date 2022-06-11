@@ -10,8 +10,8 @@ urlpatterns = [
     path('', views.index, name='home'),
     path('room_details/<int:pk>', views.RoomDetails.as_view() ,name= 'room_details' ),
     path('manageBookingstatus', views.manageBookingStatus, name= 'manageBookingstatus' ),
-    path('search-reservation', views.searchReservation, name= "search-reservation")
-
+    path('search-reservation', views.searchReservation, name= "search-reservation"),
+    path('rooms', views.room , name='rooms')
     # path('', RedirectView.as_view(url="/")),
     # path('index/',views.index, name = "index"),
     # path('amenities/',views.amenities, name = "amenities"),
