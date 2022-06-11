@@ -81,7 +81,6 @@
 <!-- /Option Panel -->
 
 <!-- Top header start -->
-{% include 'html_utils/room_details_top_header.html' %}
 
 <!-- Top header end -->
 
@@ -89,70 +88,6 @@
 {% include 'html_utils/room_details_main_header.html' %}
 <!-- Main header end -->
 
-<!-- Sidenav start -->
-<nav id="sidebar" class="nav-sidebar sidebar-heading-section">
-    <!-- Close btn-->
-    <div id="dismiss">
-        <i class="fa fa-close"></i>
-    </div>
-    <div class="sidebar-inner">
-        <div class="sidebar-logo">
-            <img src="img/logos/logo.png" alt="sidebarlogo">
-        </div>
-        <div class="sidebar-navigation">
-            <h3 class="heading">pages</h3>
-            <ul class="menu-list">
-                <li><a href="#" class="pt0">Home<em class="fa fa-chevron-down"></em></a>
-                </li>
-                <li><a href="#" class="active">About<em class="fa fa-chevron-down"></em></a>
-                </li>
-            </ul>
-        </div>
-        <div class="get-in-touch">
-            <h3 class="heading">Get in Touch</h3>
-            <div class="sidebar-contact-info">
-                <div class="icon">
-                    <i class="fa fa-phone"></i>
-                </div>
-                <div class="body-info">
-                    <a href="tel:0477-0477-8556-552">0477 8556 552</a>
-                </div>
-            </div>
-            <div class="sidebar-contact-info">
-                <div class="icon">
-                    <i class="fa fa-envelope"></i>
-                </div>
-                <div class="body-info">
-                    <a href="#">info@themevessel.com</a>
-                </div>
-            </div>
-            <div class="sidebar-contact-info mb-0">
-                <div class="icon">
-                    <i class="fa fa-fax"></i>
-                </div>
-                <div class="body-info">
-                    <a href="tel:0477-0477-8556-552">0266 8556 787</a>
-                </div>
-            </div>
-        </div>
-        <div class="get-social">
-            <h3 class="heading">Get Social</h3>
-            <a href="#" class="facebook-bg">
-                <i class="fa fa-facebook"></i>
-            </a>
-            <a href="#" class="twitter-bg">
-                <i class="fa fa-twitter"></i>
-            </a>
-            <a href="#" class="google-bg">
-                <i class="fa fa-google"></i>
-            </a>
-            <a href="#" class="linkedin-bg">
-                <i class="fa fa-linkedin"></i>
-            </a>
-        </div>
-    </div>
-</nav>
-<!-- Sidenav end -->
 
 <!-- Rooms banner start -->
 <div class="rooms-banner">
@@ -211,8 +146,8 @@
                 </div>
                 <div class="col-xl-9 col-lg-8 col-md-8 align-self-center">
                     <div class="content">
-                        <div class="for-sale">For Sale</div>
-                        <h2><a href="#">{{room_details.name}}</a> <span class="pull-right">{% if room_details.price%}TZS {{room_details.price}} {%else%} Price will show up soon {%endif%}<small>/mo</small></span></h2>
+                        <div class="for-sale">Available</div>
+                        <h2><a href="#">{{room_details.name}}</a> <span class="pull-right">{% if room_details.price%}TZS {{room_details.price}} {%else%} Price will show up soon {%endif%}<small>/night</small></span></h2>
                         <ul class="facilities-list clearfix">
                             <li>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-building" viewBox="0 0 16 16">
@@ -252,68 +187,68 @@
                     <!-- Rooms description end -->
 
                     <!-- Amenities start -->
-                    <div class="amenities mb-30">
-                        <h3>Amenities</h3>
-                        <div class="row">
-                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                <ul class="condition">
-                                    <li>
-                                        <i class="flaticon-air-conditioning"></i>Air conditioning
-                                    </li>
-                                    <li>
-                                        <i class="flaticon-balcony-and-door"></i>Balcony
-                                    </li>
-                                    <li>
-                                        <i class="flaticon-weightlifting"></i>Gym
-                                    </li>
-                                    <li>
-                                        <i class="flaticon-parking"></i>Parking
-                                    </li>
-                                    <li>
-                                        <i class="flaticon-sunbed"></i>Beach View
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                <ul class="condition">
-                                    <li>
-                                        <i class="flaticon-bed"></i>2 Bedroom
-                                    </li>
-                                    <li>
-                                        <i class="flaticon-person-learning-by-reading"></i>Free Newspaper
-                                    </li>
-                                    <li>
-                                        <i class="flaticon-swimming-silhouette"></i>Use of pool
-                                    </li>
-                                    <li>
-                                        <i class="flaticon-graph-line-screen"></i>TV
-                                    </li>
-                                    <li>
-                                        <i class="flaticon-no-smoking-sign"></i>No Smoking
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                <ul class="condition">
-                                    <li>
-                                        <i class="flaticon-room-service"></i>Room Service
-                                    </li>
-                                    <li>
-                                        <i class="flaticon-breakfast"></i>Breakfast
-                                    </li>
-                                    <li>
-                                        <i class="flaticon-phone-receiver"></i>Telephone
-                                    </li>
-                                    <li>
-                                        <i class="flaticon-bed"></i>2 Bedroom
-                                    </li>
-                                    <li>
-                                        <i class="flaticon-wifi-connection-signal-symbol"></i>Free Wi-Fi
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+{#                    <div class="amenities mb-30">#}
+{#                        <h3>Amenities</h3>#}
+{#                        <div class="row">#}
+{#                            <div class="col-md-4 col-sm-4 col-xs-12">#}
+{#                                <ul class="condition">#}
+{#                                    <li>#}
+{#                                        <i class="flaticon-air-conditioning"></i>Air conditioning#}
+{#                                    </li>#}
+{#                                    <li>#}
+{#                                        <i class="flaticon-balcony-and-door"></i>Balcony#}
+{#                                    </li>#}
+{#                                    <li>#}
+{#                                        <i class="flaticon-weightlifting"></i>Gym#}
+{#                                    </li>#}
+{#                                    <li>#}
+{#                                        <i class="flaticon-parking"></i>Parking#}
+{#                                    </li>#}
+{#                                    <li>#}
+{#                                        <i class="flaticon-sunbed"></i>Beach View#}
+{#                                    </li>#}
+{#                                </ul>#}
+{#                            </div>#}
+{#                            <div class="col-md-4 col-sm-4 col-xs-12">#}
+{#                                <ul class="condition">#}
+{#                                    <li>#}
+{#                                        <i class="flaticon-bed"></i>2 Bedroom#}
+{#                                    </li>#}
+{#                                    <li>#}
+{#                                        <i class="flaticon-person-learning-by-reading"></i>Free Newspaper#}
+{#                                    </li>#}
+{#                                    <li>#}
+{#                                        <i class="flaticon-swimming-silhouette"></i>Use of pool#}
+{#                                    </li>#}
+{#                                    <li>#}
+{#                                        <i class="flaticon-graph-line-screen"></i>TV#}
+{#                                    </li>#}
+{#                                    <li>#}
+{#                                        <i class="flaticon-no-smoking-sign"></i>No Smoking#}
+{#                                    </li>#}
+{#                                </ul>#}
+{#                            </div>#}
+{#                            <div class="col-md-4 col-sm-4 col-xs-12">#}
+{#                                <ul class="condition">#}
+{#                                    <li>#}
+{#                                        <i class="flaticon-room-service"></i>Room Service#}
+{#                                    </li>#}
+{#                                    <li>#}
+{#                                        <i class="flaticon-breakfast"></i>Breakfast#}
+{#                                    </li>#}
+{#                                    <li>#}
+{#                                        <i class="flaticon-phone-receiver"></i>Telephone#}
+{#                                    </li>#}
+{#                                    <li>#}
+{#                                        <i class="flaticon-bed"></i>2 Bedroom#}
+{#                                    </li>#}
+{#                                    <li>#}
+{#                                        <i class="flaticon-wifi-connection-signal-symbol"></i>Free Wi-Fi#}
+{#                                    </li>#}
+{#                                </ul>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
                     <!-- Amenities end -->
 
                     <!-- Extra service start  -->
@@ -324,12 +259,13 @@
                     <div class="house-rules mb-50">
                         <h3>House Rules</h3>
                         <ul>
-                            <li><i class="fa fa-hand-o-right"></i> Check-in: 10:00 AM - 7:00 PM</li>
-                            <li><i class="fa fa-hand-o-right"></i> Checkout: 11:00 AM</li>
-                            <li><i class="fa fa-hand-o-right"></i> No smoking</li>
-                            <li><i class="fa fa-hand-o-right"></i> No pets</li>
-                            <li><i class="fa fa-hand-o-right"></i> No parties or events</li>
-                            <li><i class="fa fa-hand-o-right"></i> Lorem ipsum dolor sit amet, conser adipiscing elit. Donec luctus</li>
+                            {%for a in polices %}
+                                <li><i class="fa fa-hand-o-right"></i> {{a.title}}</li>
+                            {%empty%}
+                             No content
+                           {%endfor%}
+
+
                         </ul>
                     </div>
                     <!-- House reles end -->

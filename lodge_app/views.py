@@ -81,18 +81,22 @@ class RoomDetails(View):
         user = request.user if type(request.user) is not AnonymousUser else None
         print(room.get_room_images())
         lodge = Lodge.objects.all().first()
+
+        polices= Policy.objects.all()
         try:
             my_booked_rooms = Reservation.objects.filter(guest=user)
             context = {
             'room_details': room,
             'my_booked_rooms': my_booked_rooms,
             'lodge': lodge,
+           'polices': polices
             }
             return render(request, template_name='room_details.html', context=context)
         except :
             context = {
             'room_details': room,
             'lodge': lodge,
+           'polices': polices
             }
             return render(request, template_name='room_details.html', context=context)
 
