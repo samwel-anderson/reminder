@@ -138,6 +138,45 @@
     </div>
 </div>
 <!-- Banner end -->
+<div class="search-area-box-1 search-area-box-12">
+    <div class="container">
+        <div class="search-contents">
+            <form id="search-form2" method="POST">
+                 {% csrf_token%}
+                <div class="row g-0 search-your-details">
+                    <div class="col-lg-3 col-md-12 align-self-center">
+                        <div class="search-your-rooms">
+                            <h4>Search</h4>
+                            <h3 class="room-header">Your <span>Rooms</span></h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-md-12">
+                        <div class="row">
+                            <div hidden class="form-group">
+                                <input type="text" name="check-in" id="check-in2" class="btn-default datepicker" placeholder="Check In">
+                            </div>
+                            <div hidden class="form-group clearfix">
+                                <input type="text" name="check-out" id="check-out2" class="btn-default datepicker" placeholder="Check Out">
+                            </div>
+                                <div  class="form-group clearfix">
+                                <input type="tel" class="btn-default" name="phone" id ='phone2'  placeholder="Phone Number">
+                            </div>
+                            <div  class="form-group clearfix">
+                                <input type="text" class="btn-default" name="reservation-code" id ='reservation-code2' maxlength="4"  placeholder="Reservation Code">
+                            </div>
+                            
+                            <div class="col-md-4 col-sm-6 col-12 col-pad-0">
+                                <div class="form-group">
+                                    <button  type="submit" class="btn-md btn-theme btn-4 btn-7 w-100">Search</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <!-- About hotel alpha start -->
 <div class="about-hotel-alpha content-area-6">
@@ -469,6 +508,81 @@
             //console.log($('#changed_room').val())
     }
  });    
+
+
+  $('#search-form2').on('submit', function(e) {
+        
+  e.preventDefault();
+  if($('#phone2').val() !== "" && $('#reservation-code2').val()!== ""){
+      console.log(dateFormat( $('#check-in2').val(), 'yyyy-MM-dd'))
+      console.log(dateFormat( $('#check-out2').val(), 'yyyy-MM-dd'))
+      console.log($('#reservation-code').val())
+    const form_data = {
+                action:"search_room",
+                check_in : dateFormat( $('#check-in').val(), 'yyyy-MM-dd'),
+                check_out : dateFormat( $('#check-out').val(), 'yyyy-MM-dd'),
+                phone :$('#phone2').val(),
+                res_code : $('#reservation-code2').val(),
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                dataType: "json",
+            }
+
+            console.log(form_data)
+        $.ajax({
+            type : "POST", 
+            url: '/search-reservation',
+            data: form_data,
+            success: function(data){
+                const myModal = new bootstrap.Modal(document.getElementById('res_modal'), {
+                keyboard: false
+                })
+                const  final_data = JSON.parse(data.query_set)
+                const final_detaied = JSON.parse(data['detailed_qs'])
+                console.log(final_detaied)
+                let modal_body= document.getElementById('modal-body')
+                modal_body.innerHTML = ''
+                let html = ''
+                for(let index =0; index < final_detaied.length; index++){
+                    const fields = final_detaied[index]
+                    html += `
+                     <tr>
+                        <th scope="row">  <img width="50" height="50" src="${fields.room_image}" class="rounded" alt="..."></th>
+                        <td>${fields.res_code}</td>
+                        <td>${fields.room_name}</td>
+                        <td>${fields.comfirmed? `
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                             </svg>
+                             `: `
+                             <svg style="color:red;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                            </svg>`}
+                        </td>
+                        <td></td>
+                    </tr>
+                    `
+               }
+
+               modal_body.innerHTML= html
+                myModal.show()
+            },
+            failure: function(error) {
+                console.log(error)
+            }
+        });
+        
+
+      }
+      else  {
+          console.log(" form not on")
+            //console.log($('#check_out').val())
+            //let sms = document.getElementById('sms-1')
+            //sms.innerText = `Fill in all fields`
+            //sms.style.display = 'block' 
+            //console.log($('#changed_room').val())
+    }
+ });    
+
 
   
 
